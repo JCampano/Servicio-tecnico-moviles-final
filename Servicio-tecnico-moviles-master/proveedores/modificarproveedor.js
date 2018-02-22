@@ -4,6 +4,7 @@ $("#divfrmmodificarproveedor").dialog({
     // beforeClose: antesDeCerrarse,
     close: function () {
         $("#frmModificarProveedor")[0].reset();
+		mostrarMenu();
     },
     closeOnEscape: false, // No se cierra con ESCAPE
     hide: {
@@ -23,3 +24,65 @@ $("#divfrmmodificarproveedor").dialog({
         }
     }]*/
 });
+
+document.getElementById("modificarProveedor").addEventListener("click",validarModificarProveedor,false);
+
+function reiniciarValidacionesModificarProveedor() {
+	document.frmModificarProveedor.reset();
+	document.frmModificarProveedor.nifProveedor.style.background = "white";
+	document.frmModificarProveedor.nombreProveedor.style.background = "white";	
+	document.frmModificarProveedor.tipoProveedor.style.background = "white";
+}
+
+function validarModificarProveedor(){
+	var nif = document.frmModificarProveedor.nifProveedor.value.trim();
+	var nombre = document.frmModificarProveedor.nombreProveedor.value.trim();
+	var tipo = document.frmModificarProveedor.tipoProveedor.value.trim();		
+		
+	var errores = false;
+	var expRegNif = /^[0-9]{8}[a-zA-Z]{1}$/;
+	var expRegNombre = /^[[a-zA-Z\s]{3,20}$/;
+	var expRegTipo = /^[[a-zA-Z\s]{3,15}$/;
+		
+	//validaciones
+	var sErrores = "";
+
+	//NIf
+	if (expRegNif.test(nif) == false){		
+		errores = true;					
+		document.frmModificarProveedor.nifProveedor.focus();	//Este campo obtiene el foco			
+		sErrores += "El Nif debe contener 8 números y 1 letra \n";			
+		document.frmModificarProveedor.nifProveedor.style.background = "yellow";  //Marcar error
+	}
+	else {//Desmarcar error		
+		document.frmModificarProveedor.nifProveedor.style.background = "white";	
+	}
+
+	//nombre
+	if (expRegNombre.test(nombre) == false){		
+		errores = true;					
+		document.frmModificarProveedor.nombreProveedor.focus();	//Este campo obtiene el foco			
+		sErrores += "El nombre debe contener entre 3 y 20 caracteres\n";			
+		document.frmModificarProveedor.nombreProveedor.style.background = "yellow";  //Marcar error
+	}
+	else {//Desmarcar error		
+		document.frmModificarProveedor.nombreProveedor.style.background = "white";	
+	}	
+	
+	//tipo
+	if (expRegTipo.test(tipo) == false){		
+		errores = true;					
+		document.frmModificarProveedor.tipoProveedor.focus();	//Este campo obtiene el foco			
+		sErrores += "El campo tipo debe contener entre 3 y 15 caracteres\n";			
+		document.frmModificarProveedor.tipoProveedor.style.background = "yellow";  //Marcar error
+	}
+	else {//Desmarcar error		
+		document.frmModificarProveedor.tipoProveedor.style.background = "white";	
+	}	
+	
+	if(errores)
+		alert(sErrores);
+	else{
+		//modif proveedor
+	}		
+}
