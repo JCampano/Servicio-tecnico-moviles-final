@@ -135,7 +135,7 @@ function validarModificarCliente(){
             alert(oDatosDevueltos[1]);
 
             // Como ha ido bien cierro el formulario
-            $("#frmModificarCliente").dialog("close"); 
+            $("#divfrmmodificarcliente").dialog("close"); 
 
         } else {
             alert(oDatosDevueltos[1]);
