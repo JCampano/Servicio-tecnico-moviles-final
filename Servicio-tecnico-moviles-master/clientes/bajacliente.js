@@ -81,5 +81,4 @@ function respuestaBajaCliente(oDatosDevueltos, sStatus, oAjax) {
 
 
     }
-	}		
-}
+}		

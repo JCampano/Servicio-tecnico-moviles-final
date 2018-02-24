@@ -124,26 +124,29 @@ function validarAltaCliente(){
 		alert(sErrores);
 	else{
 		//dar de alta en la base de datos
-var sDatos = $("#frmAltaCliente").serialize();
+        var sDatos = $("#frmAltaCliente").serialize();
 
-$.post("clientes/altacliente.php", sDatos, respuestaAltaCliente, 'json');
+        $.post("clientes/altacliente.php", sDatos, respuestaAltaCliente, 'json');
 
-}
+    }
 
-function respuestaAltaCliente(oDatosDevueltos, sStatus, oAjax) {
+    function respuestaAltaCliente(oDatosDevueltos, sStatus, oAjax) {
 
-// oDatosDevueltos[0]  --- si hay o no error
-if (oDatosDevueltos[0] == false) {
-    // Mensaje
-    alert(oDatosDevueltos[1]);
+    // oDatosDevueltos[0]  --- si hay o no error
+    if (oDatosDevueltos[0] == false) 
+        {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
 
-    // Como ha ido bien cierro el formulario
-    $("#divfrmaltacliente").dialog("close"); 
+            // Como ha ido bien cierro el formulario
+            $("#divfrmaltacliente").dialog("close"); 
 
-} else {
-    alert(oDatosDevueltos[1]);
-}
+        } 
+    else 
+        {
+            alert(oDatosDevueltos[1]);
+        }
 
 
-}
-	}	
+    }
+}	
