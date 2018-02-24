@@ -18,18 +18,18 @@ $direccionCliente=$_POST['direccionCliente'];
 $telefonoCliente=$_POST['telefonoCliente'];
 
 // Abrir conexion con la BD
-$conexion = mysql_connect($servidor, $usuario, $password) or die(mysql_error());
-mysql_query("SET NAMES 'utf8'", $conexion);
-
-mysql_select_db($basedatos, $conexion) or die(mysql_error());
+$conexion = mysqli_connect($servidor, $usuario, $password, $basedatos);
+if($conexion->connect_error){
+        die("Conexión fallida: ".$conexion->connect_error);
+    }
+$conexion ->set_charset("utf8");//asi es el caracter utf8 si es msqli
 
 $sql = "SELECT * FROM persona WHERE dni_o_cif='".$nifCliente."' and tipo='Cliente' ";
 
 
-$resultados = mysql_query($sql, $conexion) or die(mysql_error());
-
-
-$contador=mysql_num_rows($resultados);
+if ($res = $conexion->query($sql)){
+    $contador = $res->num_rows;    
+}
 
 if($contador>0)
 {
@@ -38,13 +38,17 @@ if($contador>0)
 
 }
 else
-{
-	$mensaje='INSERTADO CON EXITO';
-	$error = false;
-
+{	
 	$sql = "INSERT INTO persona(dni_o_cif, tipo, nombre, apellidos, telefono, direccion) VALUES ('$nifCliente','Cliente', '$nombreCliente', '$apellidosCliente', '$telefonoCliente', '$direccionCliente')";
 
-	$resultados = @mysql_query($sql, $conexion) or die(mysql_error());
+	if($conexion->query($sql) === TRUE){
+	        $mensaje = "Alta de Cliente correcta";
+		    $error = FALSE;
+	    } 
+	    else {
+		    $mensaje = "Error: ".$sql." ".$conn->error;
+		    $error = TRUE;
+		}
 	
 }
 
@@ -52,6 +56,6 @@ $respuesta = array($error,$mensaje);
 
 echo json_encode($respuesta); 
 
-mysql_close($conexion);
+mysqli_close($conexion);
 
 ?> 
