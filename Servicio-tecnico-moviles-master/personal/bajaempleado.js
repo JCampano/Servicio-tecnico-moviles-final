@@ -25,6 +25,11 @@ $("#divfrmbajaempleado").dialog({
     }]*/
 });
 document.getElementById("bajaEmpleado").addEventListener("click",validarBajaEmpleado,false);
+document.frmBajaEmpleado.volver.addEventListener("click",volverBajaEmpleado,false);
+
+function volverBajaEmpleado(){
+	$("#divfrmbajaempleado").dialog("close");    	
+}
 
 function reiniciarValidacionesBajaEmpleado(){
 	document.frmBajaEmpleado.reset();	

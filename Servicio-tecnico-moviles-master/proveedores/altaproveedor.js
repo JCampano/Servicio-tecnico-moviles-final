@@ -32,6 +32,11 @@ function reiniciarValidacionesAltaProveedor(){
 }
 
 document.getElementById("altaProveedor").addEventListener("click",validarAltaProveedor,false);
+document.frmAltaProveedor.volver.addEventListener("click",volverAltaProveedor,false);
+
+function volverAltaProveedor(){
+	$("#divfrmaltaproveedor").dialog("close");    	
+}
 
 function validarAltaProveedor(){	
 	var nif = document.frmAltaProveedor.nifProveedor.value.trim();

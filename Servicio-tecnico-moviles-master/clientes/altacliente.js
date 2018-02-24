@@ -27,6 +27,11 @@ $("#divfrmaltacliente").dialog({
 });
 
 document.getElementById("altaCliente").addEventListener("click",validarAltaCliente,false);
+document.frmAltaCliente.volver.addEventListener("click",volverAltaCliente,false);
+
+function volverAltaCliente(){
+	$("#divfrmaltacliente").dialog("close");    	
+}
 
 function reiniciarValidacionesAltaCliente(){
 	document.frmAltaCliente.reset();
@@ -133,7 +138,7 @@ function respuestaAltaCliente(oDatosDevueltos, sStatus, oAjax) {
             alert(oDatosDevueltos[1]);
 
             // Como ha ido bien cierro el formulario
-            $("#frmAltaCliente").hide("normal").get(0).reset();
+            $("#divfrmaltacliente").dialog("close"); 
 
         } else {
             alert(oDatosDevueltos[1]);

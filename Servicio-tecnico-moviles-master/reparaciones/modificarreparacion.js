@@ -26,6 +26,11 @@ $("#divfrmmodificarreparacion").dialog({
 });
 
 document.getElementById("modificarReparacion").addEventListener("click",validarModificarReparacion,false);
+document.frmModificarReparacion.volver.addEventListener("click",volverModificarReparacion,false);
+
+function volverModificarReparacion(){
+	$("#divfrmmodificarreparacion").dialog("close");    	
+}
 
 function reiniciarValidacionesModificarReparacion(){
 	document.frmModificarReparacion.reset();

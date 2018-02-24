@@ -26,6 +26,11 @@ $("#divfrmbajapieza").dialog({
 });
 
 document.getElementById("bajaPieza").addEventListener("click",validarBajaPieza,false);
+document.frmBajaPieza.volver.addEventListener("click",volverBajaPieza,false);
+
+function volverBajaPieza(){
+	$("#divfrmbajapieza").dialog("close");    	
+}
 
 function reiniciarValidacionesBajaPieza(){
 	document.frmBajaPieza.reset();

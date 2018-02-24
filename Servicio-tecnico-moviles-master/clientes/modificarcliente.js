@@ -26,6 +26,11 @@ $("#divfrmmodificarcliente").dialog({
 });
 
 document.getElementById("modificarCliente").addEventListener("click",validarModificarCliente,false);
+document.frmModificarCliente.volver.addEventListener("click",volverModificarCliente,false);
+
+function volverModificarCliente(){
+	$("#divfrmmodificarcliente").dialog("close");    	
+}
 
 function reiniciarValidacionesModificarCliente(){
 	document.frmModificarCliente.reset();

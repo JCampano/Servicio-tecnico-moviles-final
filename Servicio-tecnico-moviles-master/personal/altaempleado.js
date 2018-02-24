@@ -26,6 +26,11 @@ $("#divfrmaltaempleado").dialog({
 });
 
 document.getElementById("altaEmpleado").addEventListener("click",validarAltaEmpleado,false);
+document.frmAltaEmpleado.volver.addEventListener("click",volverAltaEmpleado,false);
+
+function volverAltaEmpleado(){
+	$("#divfrmaltaempleado").dialog("close");    	
+}
 
 function reiniciarValidacionesAltaEmpleado(){
 	document.frmAltaEmpleado.reset();	

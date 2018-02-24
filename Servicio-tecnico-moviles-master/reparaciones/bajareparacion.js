@@ -26,6 +26,11 @@ $("#divfrmbajareparacion").dialog({
 });
 
 document.getElementById("bajaReparacion").addEventListener("click",validarBajaReparacion,false);
+document.frmBajaReparacion.volver.addEventListener("click",volverBajaReparacion,false);
+
+function volverBajaReparacion(){
+	$("#divfrmbajareparacion").dialog("close");    	
+}
 
 function reiniciarValidacionesBajaReparacion(){
 	document.frmBajaReparacion.reset();

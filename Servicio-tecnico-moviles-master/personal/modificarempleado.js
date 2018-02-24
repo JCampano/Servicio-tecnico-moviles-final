@@ -26,6 +26,11 @@ $("#divfrmmodificarempleado").dialog({
 });
 
 document.getElementById("modificarEmpleado").addEventListener("click",validarModificarEmpleado,false);
+document.frmModificarEmpleado.volver.addEventListener("click",volverModificarEmpleado,false);
+
+function volverModificarEmpleado(){
+	$("#divfrmmodificarempleado").dialog("close");    	
+}
 
 function reiniciarValidacionesModificarEmpleado(){
 	document.frmModificarEmpleado.reset();	

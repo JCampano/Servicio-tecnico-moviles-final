@@ -26,6 +26,12 @@ $("#divfrmaltapieza").dialog({
 });
 
 document.getElementById("altaPieza").addEventListener("click",validarAltaPieza,false);
+document.frmAltaPieza.volver.addEventListener("click",volverAltaPieza,false);
+
+function volverAltaPieza(){
+	$("#divfrmaltapieza").dialog("close");    	
+}
+
 
 function reiniciarValidacionesAltaPieza(){
 	document.frmAltaPieza.reset();

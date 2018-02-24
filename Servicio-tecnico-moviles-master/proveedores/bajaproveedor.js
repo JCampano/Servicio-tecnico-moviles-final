@@ -26,6 +26,11 @@ $("#divfrmbajaproveedor").dialog({
 });
 
 document.getElementById("bajaProveedor").addEventListener("click",validarBajaProveedor,false);
+document.frmBajaProveedor.volver.addEventListener("click",volverBajaProveedor,false);
+
+function volverBajaProveedor(){
+	$("#divfrmbajaproveedor").dialog("close");    	
+}
 
 function reiniciarValidacionesBajaProveedor(){
 	document.frmBajaProveedor.reset();

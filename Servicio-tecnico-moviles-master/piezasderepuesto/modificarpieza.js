@@ -26,6 +26,11 @@ $("#divfrmmodificarpieza").dialog({
 });
 
 document.getElementById("modificarPieza").addEventListener("click",validarModificarPieza,false);
+document.frmModificarPieza.volver.addEventListener("click",volverModificarPieza,false);
+
+function volverModificarPieza(){
+	$("#divfrmmodificarpieza").dialog("close");    	
+}
 
 function reiniciarValidacionesModificarPieza(){document.frmModificarPieza.reset();
 	document.frmModificarPieza.idPieza.style.background = "white";

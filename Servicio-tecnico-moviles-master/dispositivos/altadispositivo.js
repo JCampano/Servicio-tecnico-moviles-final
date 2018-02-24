@@ -25,6 +25,11 @@ $("#divfrmaltadispositivo").dialog({
     }]*/
 });
 document.getElementById("altaDispositivo").addEventListener("click",validarAltaDispositivo,false);
+document.frmAltaDispositivo.volver.addEventListener("click",volverAltaDispositivo,false);
+
+function volverAltaDispositivo(){
+	$("#divfrmaltadispositivo").dialog("close");    	
+}
 
 function reiniciarValidacionesAltaDispositivo(){
 	document.frmAltaDispositivo.reset();

@@ -26,6 +26,12 @@ $("#divfrmmodificarproveedor").dialog({
 });
 
 document.getElementById("modificarProveedor").addEventListener("click",validarModificarProveedor,false);
+document.frmModificarProveedor.volver.addEventListener("click",volverModificarProveedor,false);
+
+function volverModificarProveedor(){
+	$("#divfrmmodificarproveedor").dialog("close");    	
+}
+
 
 function reiniciarValidacionesModificarProveedor() {
 	document.frmModificarProveedor.reset();

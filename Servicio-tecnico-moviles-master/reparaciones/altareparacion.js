@@ -26,6 +26,11 @@ $("#divfrmaltareparacion").dialog({
 });
 
 document.getElementById("altaReparacion").addEventListener("click",validarAltaReparacion,false);
+document.frmAltaReparacion.volver.addEventListener("click",volverAltaReparacion,false);
+
+function volverAltaReparacion(){
+	$("#divfrmaltareparacion").dialog("close");    	
+}
 
 function reiniciarValidacionesAltaReparacion(){
 	document.frmAltaReparacion.reset();

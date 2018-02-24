@@ -26,6 +26,11 @@ $("#divfrmbajacliente").dialog({
 });
 
 document.getElementById("bajaCliente").addEventListener("click",validarBajaCliente,false);
+document.frmBajaCliente.volver.addEventListener("click",volverBajaCliente,false);
+
+function volverBajaCliente(){
+	$("#divfrmbajacliente").dialog("close");    	
+}
 
 function reiniciarValidacionesBajaCliente(){
 	document.frmBajaCliente.reset();

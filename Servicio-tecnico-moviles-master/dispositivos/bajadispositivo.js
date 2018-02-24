@@ -25,6 +25,11 @@ $("#divfrmbajadispositivo").dialog({
     }]*/
 });
 document.getElementById("bajaDispositivo").addEventListener("click",validarBajaDispositivo,false);
+document.frmBajaDispositivo.volver.addEventListener("click",volverBajaDispositivo,false);
+
+function volverBajaDispositivo(){
+	$("#divfrmbajadispositivo").dialog("close");    	
+}
 
 function reiniciarValidacionesBajaDispositivo(){
 	document.frmBajaDispositivo.reset();	
