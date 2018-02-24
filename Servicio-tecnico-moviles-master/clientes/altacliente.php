@@ -7,7 +7,7 @@ header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 
 
 $servidor  = "localhost";
-$basedatos = "";
+$basedatos = "mobilexpressdb";
 $usuario   = "root";
 $password  = "";
 
@@ -23,7 +23,7 @@ mysql_query("SET NAMES 'utf8'", $conexion);
 
 mysql_select_db($basedatos, $conexion) or die(mysql_error());
 
-$sql = "";
+$sql = "SELECT * FROM persona WHERE dni_o_cif='".$nifCliente."' and tipo='Cliente' ";
 
 
 $resultados = mysql_query($sql, $conexion) or die(mysql_error());
@@ -42,7 +42,7 @@ else
 	$mensaje='INSERTADO CON EXITO';
 	$error = false;
 
-	$sql = "";
+	$sql = "INSERT INTO persona(dni_o_cif, tipo, nombre, apellidos, telefono, direccion) VALUES ('$nifCliente','Cliente', '$nombreCliente', '$apellidosCliente', '$telefonoCliente', '$direccionCliente')";
 
 	$resultados = @mysql_query($sql, $conexion) or die(mysql_error());
 	
