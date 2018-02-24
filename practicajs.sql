@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-02-2018 a las 23:18:59
+-- Tiempo de generación: 24-02-2018 a las 15:25:26
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dispositivo` (
-  `id` int(10) NOT NULL,
+  `id_dispositivo` int(10) NOT NULL,
   `marca` int(20) NOT NULL,
   `modelo` int(20) NOT NULL,
   `garantia` varchar(2) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `dispositivo` (
 --
 
 CREATE TABLE `persona` (
-  `dni` varchar(9) NOT NULL,
+  `dni_o_cif` varchar(9) NOT NULL,
   `tipo` varchar(10) NOT NULL,
   `nombre` varchar(60) NOT NULL,
   `apellidos` varchar(60) NOT NULL,
@@ -62,7 +62,9 @@ CREATE TABLE `persona` (
 CREATE TABLE `piezas` (
   `num_serie` int(16) NOT NULL,
   `tipo` varchar(20) NOT NULL,
-  `precio` float NOT NULL
+  `precio` float NOT NULL,
+  `id_reparacion` int(20) NOT NULL,
+  `cif_proveedor` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -72,11 +74,23 @@ CREATE TABLE `piezas` (
 --
 
 CREATE TABLE `reparacion` (
-  `id` int(20) NOT NULL,
+  `id_reparacion` int(20) NOT NULL,
+  `dni_solicitante` varchar(9) NOT NULL,
   `modelo` int(20) NOT NULL,
   `averia` int(40) NOT NULL,
   `importe` float NOT NULL,
   `comentarios` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reparacion_dispositivo`
+--
+
+CREATE TABLE `reparacion_dispositivo` (
+  `id_reparacion` int(20) NOT NULL,
+  `id_dispositivo` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -87,25 +101,60 @@ CREATE TABLE `reparacion` (
 -- Indices de la tabla `dispositivo`
 --
 ALTER TABLE `dispositivo`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_dispositivo`);
 
 --
 -- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
-  ADD PRIMARY KEY (`dni`);
+  ADD PRIMARY KEY (`dni_o_cif`),
+  ADD KEY `dni_o_cif` (`dni_o_cif`);
 
 --
 -- Indices de la tabla `piezas`
 --
 ALTER TABLE `piezas`
-  ADD PRIMARY KEY (`num_serie`);
+  ADD PRIMARY KEY (`num_serie`),
+  ADD KEY `id_reparacion` (`id_reparacion`),
+  ADD KEY `cif_proveedor` (`cif_proveedor`);
 
 --
 -- Indices de la tabla `reparacion`
 --
 ALTER TABLE `reparacion`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_reparacion`),
+  ADD KEY `dni_solicitante` (`dni_solicitante`);
+
+--
+-- Indices de la tabla `reparacion_dispositivo`
+--
+ALTER TABLE `reparacion_dispositivo`
+  ADD KEY `id_reparacion` (`id_reparacion`),
+  ADD KEY `id_dispositivo` (`id_dispositivo`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `piezas`
+--
+ALTER TABLE `piezas`
+  ADD CONSTRAINT `piezas_ibfk_1` FOREIGN KEY (`id_reparacion`) REFERENCES `reparacion` (`id_reparacion`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `piezas_ibfk_2` FOREIGN KEY (`cif_proveedor`) REFERENCES `persona` (`dni_o_cif`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reparacion`
+--
+ALTER TABLE `reparacion`
+  ADD CONSTRAINT `reparacion_ibfk_1` FOREIGN KEY (`dni_solicitante`) REFERENCES `persona` (`dni_o_cif`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reparacion_dispositivo`
+--
+ALTER TABLE `reparacion_dispositivo`
+  ADD CONSTRAINT `reparacion_dispositivo_ibfk_1` FOREIGN KEY (`id_reparacion`) REFERENCES `reparacion` (`id_reparacion`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `reparacion_dispositivo_ibfk_2` FOREIGN KEY (`id_dispositivo`) REFERENCES `dispositivo` (`id_dispositivo`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
