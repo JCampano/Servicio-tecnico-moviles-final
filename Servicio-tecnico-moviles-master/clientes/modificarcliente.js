@@ -123,5 +123,24 @@ function validarModificarCliente(){
 		alert(sErrores);
 	else{
 		//modificarCLiente
+        var sDatos = $("#frmModificarCliente").serialize();
+
+        $.post("clientes/modificarcliente.php", sDatos, respuestaModificaCliente, 'json');
 	}
+    function respuestaModificaCliente(oDatosDevueltos, sStatus, oAjax) {
+
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
+
+            // Como ha ido bien cierro el formulario
+            $("#frmModificarCliente").dialog("close"); 
+
+        } else {
+            alert(oDatosDevueltos[1]);
+        }
+
+
+    }
 }
