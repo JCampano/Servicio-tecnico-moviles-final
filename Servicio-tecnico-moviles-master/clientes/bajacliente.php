@@ -12,10 +12,6 @@ $usuario   = "root";
 $password  = "";
 
 $nifCliente=$_POST['nifCliente'];
-$nombreCliente=$_POST['nombreCliente'];
-$apellidosCliente=$_POST['apellidosCliente'];
-$direccionCliente=$_POST['direccionCliente'];
-$telefonoCliente=$_POST['telefonoCliente'];
 
 // Abrir conexion con la BD
 $conexion = mysqli_connect($servidor, $usuario, $password, $basedatos);
@@ -31,18 +27,18 @@ if ($res = $conexion->query($sql)){
     $contador = $res->num_rows;    
 }
 
-if($contador>0)
+if($contador==0)
 {
-	$mensaje= 'Ya existe ese cliente';
+	$mensaje= 'No existe ese cliente';
 	$error = true;
 
 }
 else
 {	
-	$sql = "INSERT INTO persona(dni_o_cif, tipo, nombre, apellidos, telefono, direccion) VALUES ('$nifCliente','Cliente', '$nombreCliente', '$apellidosCliente', '$telefonoCliente', '$direccionCliente')";
+	$sql = "DELETE FROM persona WHERE dni_o_cif='".$nifCliente."' ";
 
 	if($conexion->query($sql) === TRUE){
-	        $mensaje = "Alta de Cliente correcta";
+	        $mensaje = "Baja de Cliente correcta";
 		    $error = FALSE;
 	    } 
 	    else {

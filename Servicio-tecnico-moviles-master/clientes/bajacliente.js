@@ -59,14 +59,27 @@ function validarBajaCliente(){
 	if(errores)
 		alert(sErrores);
 	else{
-		cad="";	
-		if (oSAT.bajaCliente(nif)){
-			cad="El Cliente ha sido dado de baja";
-		}
-		else{
-			cad="Cliente no registrado";
-			document.frmBajaCliente.reset();
-		}			
-		alert(cad); //aqui hay que hacer appenchild para mostrar el mensaje 
+		var sDatos = $("#frmBajaCliente").serialize();
+
+        $.post("clientes/bajacliente.php", sDatos, respuestaBajaCliente, 'json');
+
+    }
+
+function respuestaBajaCliente(oDatosDevueltos, sStatus, oAjax) {
+
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
+
+            // Como ha ido bien cierro el formulario
+            $("#divfrmbajacliente").dialog("close"); 
+
+        } else {
+            alert(oDatosDevueltos[1]);
+        }
+
+
+    }
 	}		
 }
