@@ -24,6 +24,7 @@ $("#divfrmbajareparacion").dialog({
         }
     }]*/
 });
+cargarComboBajaReparaciones();
 
 document.getElementById("bajaReparacion").addEventListener("click",validarBajaReparacion,false);
 document.frmBajaReparacion.volver.addEventListener("click",volverBajaReparacion,false);
@@ -34,19 +35,32 @@ function volverBajaReparacion(){
 
 function reiniciarValidacionesBajaReparacion(){
 	document.frmBajaReparacion.reset();
-	document.frmBajaReparacion.repararDispositivo.style.background = "white";
+	document.frmBajaReparacion.repararDispositivoBaja.style.background = "white";
 }
 
 
 function validarBajaReparacion(){
 	
-	if(document.frmBajaReparacion.repararDispositivo.value.trim() != "Lista de dispositivos en reparación"){			      
-        var dispositivo = document.frmBajaReparacion.repararDispositivo.value.trim();
-       document.frmBajaReparacion.repararDispositivo.style.background = "white";
+	if(document.frmBajaReparacion.repararDispositivoBaja.value.trim() != "Lista de dispositivos en reparación"){			      
+        var dispositivo = document.frmBajaReparacion.repararDispositivoBaja.value.trim();
+       document.frmBajaReparacion.repararDispositivoBaja.style.background = "white";
         //bajaReparacion
 	}
 	else{ 
 		alert("Debe seleccionar una reparación");
-	 document.frmBajaReparacion.repararDispositivo.style.background = "yellow";
+	 document.frmBajaReparacion.repararDispositivoBaja.style.background = "yellow";
 	}
+}
+
+
+function cargarComboBajaReparaciones(){
+//con load
+$("#repararDispositivoBaja").load("reparaciones/cargarComboBajaReparaciones.php");
+}
+
+
+function vaciarComboBajaReparaciones(){
+$('#repararDispositivoBaja').each(function(){
+          $('#repararDispositivoBaja option').remove();
+      });
 }

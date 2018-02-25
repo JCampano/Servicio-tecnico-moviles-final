@@ -277,6 +277,7 @@ function mostrarAltaReparacion(){
 
     } else {// si se cargo abrimos el dialogo   
 		reiniciarValidacionesAltaReparacion();
+		vaciarComboAltaReparaciones();
 		$('#divfrmaltareparacion').dialog("open");
     }
 }
@@ -292,6 +293,7 @@ function mostrarBajaReparacion(){
 
     } else {// si se cargo abrimos el dialogo      
 		reiniciarValidacionesBajaReparacion();
+		vaciarComboBajaReparaciones();
 		$('#divfrmbajareparacion').dialog("open");
     }
 }
@@ -307,6 +309,7 @@ function mostrarModificarReparacion(){
 
     } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesModificarReparacion();
+		vaciarComboModificarReparaciones();
 		$('#divfrmmodificarreparacion').dialog("open");
     }
 }
