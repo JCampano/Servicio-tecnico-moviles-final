@@ -25,6 +25,9 @@ $("#divfrmaltareparacion").dialog({
     }]*/
 });
 
+cargarComboAltaReparaciones();
+
+
 document.getElementById("altaReparacion").addEventListener("click",validarAltaReparacion,false);
 document.frmAltaReparacion.volver.addEventListener("click",volverAltaReparacion,false);
 
@@ -38,7 +41,7 @@ function reiniciarValidacionesAltaReparacion(){
 	document.frmAltaReparacion.estadoReparacion.style.background = "white";	
 	document.frmAltaReparacion.importeReparacion.style.background = "white";
 	document.frmAltaReparacion.comentarioReparacion.style.background = "white";	
-	document.frmAltaReparacion.repararDispositivo.style.background = "white";
+	document.frmAltaReparacion.repararDispositivoAlta.style.background = "white";
 }
 
 function validarAltaReparacion(){
@@ -58,12 +61,12 @@ function validarAltaReparacion(){
 	//validaciones
 	var sErrores = "";
 	
-	if(document.frmAltaReparacion.repararDispositivo.value =="Lista de dispositivos"){
+	if(document.frmAltaReparacion.repararDispositivoAlta.value =="Lista de dispositivos"){
 		sErrores += "Debe seleccionar 1 dispositivo\n";
-		document.frmAltaReparacion.repararDispositivo.style.background = "yellow";
+		document.frmAltaReparacion.repararDispositivoAlta.style.background = "yellow";
 	}
 	else{
-		document.frmAltaReparacion.repararDispositivo.style.background = "white";
+		document.frmAltaReparacion.repararDispositivoAlta.style.background = "white";
 	}
 	
 	//Marca
@@ -116,3 +119,18 @@ function validarAltaReparacion(){
 		//alta reparacion
 	}		
 }
+
+
+function cargarComboAltaReparaciones(){
+//con load
+$("#repararDispositivoAlta").load("reparaciones/cargarComboAltaReparaciones.php");
+
+}
+
+function vaciarComboAltaReparaciones(){
+$('#repararDispositivoAlta').each(function(){
+          $('#repararDispositivoAlta option').remove();
+      });
+}
+
+

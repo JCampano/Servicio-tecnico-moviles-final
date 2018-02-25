@@ -24,6 +24,7 @@ $("#divfrmmodificarreparacion").dialog({
         }
     }]*/
 });
+cargarComboModificarReparaciones();
 
 document.getElementById("modificarReparacion").addEventListener("click",validarModificarReparacion,false);
 document.frmModificarReparacion.volver.addEventListener("click",volverModificarReparacion,false);
@@ -38,7 +39,7 @@ function reiniciarValidacionesModificarReparacion(){
 	document.frmModificarReparacion.estadoReparacion.style.background = "white";	
 	document.frmModificarReparacion.importeReparacion.style.background = "white";
 	document.frmModificarReparacion.comentarioReparacion.style.background = "white";	
-	document.frmModificarReparacion.repararDispositivo.style.background = "white";
+	document.frmModificarReparacion.repararDispositivoModificar.style.background = "white";
 }
 
 function validarModificarReparacion(){
@@ -58,12 +59,12 @@ function validarModificarReparacion(){
 	//validaciones
 	var sErrores = "";
 	
-	if(document.frmModificarReparacion.repararDispositivo.value =="Lista de dispositivos en reparación"){
+	if(document.frmModificarReparacion.repararDispositivoModificar.value =="Lista de dispositivos en reparación"){
 		sErrores += "Debe seleccionar 1 reparacion\n";
-		document.frmModificarReparacion.repararDispositivo.style.background = "yellow";
+		document.frmModificarReparacion.repararDispositivoModificar.style.background = "yellow";
 	}
 	else{
-		document.frmModificarReparacion.repararDispositivo.style.background = "white";
+		document.frmModificarReparacion.repararDispositivoModificar.style.background = "white";
 	}
 	
 	//Marca
@@ -115,4 +116,18 @@ function validarModificarReparacion(){
 	else{
 		//modificarReparacion
 	}		
+}
+
+
+function cargarComboModificarReparaciones(){
+//con load
+$("#repararDispositivoModificar").load("reparaciones/cargarComboModificarReparaciones.php");
+}
+
+
+
+function vaciarComboModificarReparaciones(){
+$('#repararDispositivoModificar').each(function(){
+          $('#repararDispositivoModificar option').remove();
+      });
 }
