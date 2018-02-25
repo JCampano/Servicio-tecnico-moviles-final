@@ -103,15 +103,16 @@ CREATE TABLE `reparacion` (
   `modelo` varchar(40) NOT NULL,
   `averia` varchar(60) NOT NULL,
   `importe` float NOT NULL,
-  `comentarios` varchar(100) NOT NULL
+  `comentarios` varchar(100) NOT NULL,
+  `en_reparacion` boolean NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `reparacion`
 --
 
-INSERT INTO `reparacion` (`id_reparacion`, `dni_solicitante`, `modelo`, `averia`, `importe`, `comentarios`) VALUES
-(1122, '25768546S', 'Galaxy S8', 'Bateria dañada', 30, 'Se ha sustituido la bateria.');
+INSERT INTO `reparacion` (`id_reparacion`, `dni_solicitante`, `modelo`, `averia`, `importe`, `comentarios`,`en_reparacion`) VALUES
+(1122, '25768546S', 'Galaxy S8', 'Bateria dañada', 30, 'Se ha sustituido la bateria.', true);
 
 -- --------------------------------------------------------
 
