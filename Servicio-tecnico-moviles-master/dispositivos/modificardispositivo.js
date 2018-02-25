@@ -33,6 +33,7 @@ function volverModificarDispositivo(){
 
 function reiniciarValidacionesModificarDispositivo(){
 	document.frmModificarDispositivo.reset();
+     document.frmModificarDispositivo.idDispositivo.style.background = "white";
 	document.frmModificarDispositivo.fechaSalidaDispositivo.style.background = "white";
 	document.frmModificarDispositivo.fechaEntradaDispositivo.style.background = "white";
 	document.frmModificarDispositivo.modeloDispositivo.style.background = "white";
@@ -40,14 +41,18 @@ function reiniciarValidacionesModificarDispositivo(){
 }
 
 function validarModificarDispositivo(){
+    var id = document.frmModificarDispositivo.idDispositivo.value.trim();
 	var marca = document.frmModificarDispositivo.marcaDispositivo.value.trim();
 	var modelo = document.frmModificarDispositivo.modeloDispositivo.value.trim();
 	var fechaEntrada = document.frmModificarDispositivo.fechaEntradaDispositivo.value.trim();
 	var fechaSalida = document.frmModificarDispositivo.fechaSalidaDispositivo.value.trim();
+    
+    var rGarantia = document.frmAltaDispositivo.rbtGarantia.value;
 	
 	
 	var errores = false;
 	
+    var expRegId = /^[a-zA-Z0-9]{4}$/;
 	var expRegMarca = /^[a-zA-Z\s]{3,10}$/;
 	var expRegModelo = /^[a-zA-Z0-9]{3,20}$/;
 	var expRegFecha = /^\d{4}\-\d{2}\-\d{2}$/;
@@ -57,6 +62,17 @@ function validarModificarDispositivo(){
 	//validaciones
 	var sErrores = "";
 
+     //ID
+	if (expRegId.test(id) == false){		
+		errores = true;					
+		document.frmModificarDispositivo.idDispositivo.focus();	//Este campo obtiene el foco			
+		sErrores += "El id debe contener 4 caracteres \n";			
+		document.frmModificarDispositivo.idDispositivo.style.background = "yellow";  //Marcar error
+	}
+	else {//Desmarcar error		
+		document.frmModificarDispositivo.idDispositivo.style.background = "white";	
+	}
+    
 	//Marca
 	if (expRegMarca.test(marca) == false){	
 		errores = true;				
@@ -114,5 +130,25 @@ function validarModificarDispositivo(){
 		alert(sErrores);
 	else{
 		//modificarDispositivo
-	}			
+          var oDispositivo = new Dispositivo(id, marca, modelo, rGarantia, fechaEntrada, fechaSalida);
+        var sDatos = "datos=" + JSON.stringify(oDispositivo);
+
+        $.post("dispositivos/modificardispositivo.php", sDatos, respuestaModificarDispositivo, 'json');
+	}	
+     function respuestaModificarDispositivo(oDatosDevueltos, sStatus, oAjax) {
+
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
+
+            // Como ha ido bien cierro el formulario
+            $("#divfrmmodificardispositivo").dialog("close");
+
+        } else {
+            alert(oDatosDevueltos[1]);
+        }
+
+
+}
 }
