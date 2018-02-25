@@ -1,79 +1,31 @@
-function Proveedor(sTipo, sNombre, sCIF) {
-    this.sTipo = sTipo;
-    this.sNombre = sNombre
-    this.sCIF = sCIF;
-    this.bActivo = true;
-}
-
-function Pieza_Repuesto(sTipo, fPrecio, sId) {
+function Pieza_Repuesto(sNumSerie, sTipo, fPrecio, sIdReparacion, sCifProveedor) {
+    this.sNumSerie = sNumSerie;
     this.sTipo = sTipo;
     this.fPrecio = fPrecio;
-    this.sId = sId;
+    this.sIdReparacion = sIdReparacion;
+    this.sCifProveedor = sCifProveedor;
     this.bActivo = true;
 }
 
-function Reparacion(sModelo, sAveria, sEstado, fImportePresupuestado, sComentarios) {
+function Reparacion(sIdReparacion, sDniSolicitante,sModelo, sAveria, fImportePresupuestado, sComentarios) {
+    this.sIdReparacion = sIdReparacion;
+    this.sDniSolicitante = sDniSolicitante;
     this.sModelo = sModelo;
     this.sAveria = sAveria;
-    this.sEstado = sEstado;
+
     this.fImportePresupuestado = fImportePresupuestado;
     this.sComentarios = sComentarios;
     this.bActivo = true;
 }
 
-function Persona(sNombre, sApellidos, sDNI, sTelefono, sDireccion) {
+function Persona(sDni_o_Cif, sTipo, sNombre, sApellidos, sTelefono, sDireccion) {
+    this.sDni_o_Cif = sDni_o_Cif;
+    this.sTipo = sTipo;
     this.sNombre = sNombre;
     this.sApellidos = sApellidos;
-    this.sDNI = sDNI;
     this.sTelefono = sTelefono;
     this.sDireccion = sDireccion;
 }
-
-
-function Personal(sNombre, sApellidos, sDNI, sTelefono, sDireccion, sIBAN, sCargo) {
-    Persona.call(this, sNombre, sApellidos, sDNI, sTelefono, sDireccion);
-    this.sIBAN = sIBAN;
-    this.sCargo = sCargo;
-    this.bActivo = true;
-}
-
-Personal.prototype = Object.create(Persona.prototype);
-Personal.prototype.constructor = Personal;
-
-
-function Cliente(sNombre, sApellidos, sDNI, sTelefono, sDireccion) {
-    Persona.call(this, sNombre, sApellidos, sDNI, sTelefono, sDireccion);
-    this.bActivo = true;
-}
-
-Cliente.prototype = Object.create(Persona.prototype);
-Cliente.prototype.constructor = Cliente;
-
-function Apunte(fImporte, fVencimiento, bEstado, sAsunto, sNifEmpleado) {
-    this.fImporte = fImporte;
-    this.fVencimiento = fVencimiento;
-    this.bEstado = bEstado;
-    this.sAsunto = sAsunto;
-    this.sNifEmpleado = sNifEmpleado;
-}
-
-
-function Pago(fImporte, fVencimiento, bEstado, sAsunto, sNifEmpleado, sNifProveedor) {
-    Apunte.call(this, fImporte, fVencimiento, bEstado, sAsunto, sNifEmpleado);
-    this.sNifProveedor = sNifProveedor;
-}
-
-Pago.prototype = Object.create(Apunte.prototype);
-Pago.prototype.constructor = Pago;
-
-
-function Cobro(fImporte, fVencimiento, bEstado, sAsunto, sNifEmpleado, sNifCliente) {
-    Apunte.call(this, fImporte, fVencimiento, bEstado, sAsunto, sNifEmpleado);
-    this.sNifCliente = sNifCliente;
-}
-
-Cobro.prototype = Object.create(Apunte.prototype);
-Cobro.prototype.constructor = Cobro;
 
 
 function Dispositivo(idDispositivo, sMarca, sModelo, rGarantia, fEntrada, fSalida) {
