@@ -33,6 +33,7 @@ function volverAltaDispositivo(){
 
 function reiniciarValidacionesAltaDispositivo(){
 	document.frmAltaDispositivo.reset();
+    document.frmAltaDispositivo.idDispositivo.style.background = "white";
 	document.frmAltaDispositivo.fechaSalidaDispositivo.style.background = "white";
 	document.frmAltaDispositivo.fechaEntradaDispositivo.style.background = "white";
 	document.frmAltaDispositivo.modeloDispositivo.style.background = "white";
@@ -40,14 +41,17 @@ function reiniciarValidacionesAltaDispositivo(){
 }
 
 function validarAltaDispositivo(){
+    var id = document.frmAltaDispositivo.idDispositivo.value.trim();
 	var marca = document.frmAltaDispositivo.marcaDispositivo.value.trim();
 	var modelo = document.frmAltaDispositivo.modeloDispositivo.value.trim();
 	var fechaEntrada = document.frmAltaDispositivo.fechaEntradaDispositivo.value.trim();
 	var fechaSalida = document.frmAltaDispositivo.fechaSalidaDispositivo.value.trim();
 	
+    var rGarantia = document.frmAltaDispositivo.rbtGarantia.value;
 	
 	var errores = false;
-	
+
+	var expRegId = /^[a-zA-Z0-9]{4}$/;
 	var expRegMarca = /^[a-zA-Z\s]{3,10}$/;
 	var expRegModelo = /^[a-zA-Z0-9]{3,20}$/;
 	var expRegFecha = /^\d{4}\-\d{2}\-\d{2}$/
@@ -56,6 +60,17 @@ function validarAltaDispositivo(){
 	
 	//validaciones
 	var sErrores = "";
+
+    //ID
+	if (expRegId.test(id) == false){
+		errores = true;
+		document.frmAltaDispositivo.idDispositivo.focus();	//Este campo obtiene el foco
+		sErrores += "El id debe contener 4 caracteres \n";
+		document.frmAltaDispositivo.idDispositivo.style.background = "yellow";  //Marcar error
+	}
+	else {//Desmarcar error
+		document.frmAltaDispositivo.idDispositivo.style.background = "white";
+	}
 
 	//Marca
 	if (expRegMarca.test(marca) == false){	
@@ -114,5 +129,26 @@ function validarAltaDispositivo(){
 		alert(sErrores);
 	else{
 		//altaispositivo
+        var oDispositivo = new Dispositivo(id, marca, modelo, rGarantia, fechaEntrada, fechaSalida);
+    var sDatos = "datos=" + JSON.stringify(oDispositivo);
+
+    $.post("dispositivos/altadispositivo.php", sDatos, respuestaAltaDispositivo, 'json');
+
 		}
+    function respuestaAltaDispositivo(oDatosDevueltos, sStatus, oAjax) {
+
+    // oDatosDevueltos[0]  --- si hay o no error
+    if (oDatosDevueltos[0] == false) {
+        // Mensaje
+        alert(oDatosDevueltos[1]);
+
+        // Como ha ido bien cierro el formulario
+        $("#divfrmaltadispositivo").dialog("close");
+
+    } else {
+        alert(oDatosDevueltos[1]);
+    }
+
+
+}
 }
