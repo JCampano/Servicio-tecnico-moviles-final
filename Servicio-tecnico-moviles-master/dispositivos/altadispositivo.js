@@ -50,7 +50,7 @@ function validarAltaDispositivo(){
     var rGarantia = document.frmAltaDispositivo.rbtGarantia.value;
 	
 	var errores = false;
-    
+
 	var expRegId = /^[a-zA-Z0-9]{4}$/;
 	var expRegMarca = /^[a-zA-Z\s]{3,10}$/;
 	var expRegModelo = /^[a-zA-Z0-9]{3,20}$/;
@@ -62,16 +62,16 @@ function validarAltaDispositivo(){
 	var sErrores = "";
 
     //ID
-	if (expRegId.test(id) == false){		
-		errores = true;					
-		document.frmAltaDispositivo.idDispositivo.focus();	//Este campo obtiene el foco			
-		sErrores += "El id debe contener 4 caracteres \n";			
+	if (expRegId.test(id) == false){
+		errores = true;
+		document.frmAltaDispositivo.idDispositivo.focus();	//Este campo obtiene el foco
+		sErrores += "El id debe contener 4 caracteres \n";
 		document.frmAltaDispositivo.idDispositivo.style.background = "yellow";  //Marcar error
 	}
-	else {//Desmarcar error		
-		document.frmAltaDispositivo.idDispositivo.style.background = "white";	
+	else {//Desmarcar error
+		document.frmAltaDispositivo.idDispositivo.style.background = "white";
 	}
-    
+
 	//Marca
 	if (expRegMarca.test(marca) == false){	
 		errores = true;				

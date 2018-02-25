@@ -41,7 +41,7 @@ function reiniciarValidacionesBajaReparacion(){
 
 function validarBajaReparacion(){
 	
-	if(document.frmBajaReparacion.repararDispositivoBaja.value.trim() != "Lista de dispositivos en reparación"){			      
+	if(document.frmBajaReparacion.repararDispositivoBaja.value.trim() != "Lista de dispositivos en reparación"){
         var dispositivo = document.frmBajaReparacion.repararDispositivoBaja.value.trim();
        document.frmBajaReparacion.repararDispositivoBaja.style.background = "white";
         //bajaReparacion

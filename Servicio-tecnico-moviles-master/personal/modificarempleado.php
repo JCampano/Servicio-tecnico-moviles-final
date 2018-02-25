@@ -34,27 +34,21 @@ if ($res = $conexion->query($sql)){
 
 if($contador>0)
 {
-	$mensaje= 'Ya existe ese empleado';
-	$error = true;
-
-}
-else
-{
-<<<<<<< HEAD
-	$sql = "INSERT INTO persona(dni_o_cif, tipo, nombre, apellidos, telefono, direccion) VALUES ('$nifEmpleado','Empleado', '$nombreEmpleado', '$apellidosEmpleado', '$telefonoEmpleado', '$direccionEmpleado')";
-=======
-	$sql = "INSERT INTO persona(dni_o_cif, tipo, nombre, apellidos, telefono, direccion) VALUES ('$nifEmpleado','Personal', '$nombreEmpleado', '$apellidosEmpleado', '$telefonoEmpleado', '$direccionEmpleado')";
->>>>>>> origin/master
+    $sql = "UPDATE persona SET nombre='".$nombreEmpleado."', apellidos='".$apellidosEmpleado."', telefono='".$telefonoEmpleado."', direccion='".$direccionEmpleado."' where dni_o_cif='".$nifEmpleado."' AND tipo='Empleado'";
 
 	if($conexion->query($sql) === TRUE){
-	        $mensaje = "Alta de Empleado correcta";
+	        $mensaje = "Empleado modificado correctamente.";
 		    $error = FALSE;
 	    }
 	    else {
 		    $mensaje = "Error: ".$sql." ".$conn->error;
 		    $error = TRUE;
 		}
-
+}
+else
+{
+    $mensaje= 'No existe ese empleado';
+	$error = true;
 }
 
 $respuesta = array($error,$mensaje);

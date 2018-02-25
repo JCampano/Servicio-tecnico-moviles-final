@@ -1,6 +1,6 @@
  <?php
 
-// Va a devolver una respuesta JSON que no se debe cachear 
+// Va a devolver una respuesta JSON que no se debe cachear
 header('Content-Type: application/json');
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -27,7 +27,7 @@ $sql = "SELECT id_dispositivo FROM dispositivo WHERE id_dispositivo='".$oDisposi
 
 
 if ($res = $conexion->query($sql)){
-    $contador = $res->num_rows;    
+    $contador = $res->num_rows;
 }
 
 if($contador>0)
@@ -37,24 +37,24 @@ if($contador>0)
 
 }
 else
-{	
+{
 	$sql = "INSERT INTO dispositivo(id_dispositivo, marca, modelo, garantia, entrada, salida, activo) VALUES ('$oDispositivo->idDispositivo','$oDispositivo->sMarca','$oDispositivo->sModelo', '$oDispositivo->rGarantia', '$oDispositivo->fEntrada','$oDispositivo->fSalida', 'Si')";
 
 	if($conexion->query($sql) === TRUE){
 	        $mensaje = "Alta de Dispositivo correcta";
 		    $error = FALSE;
-	    } 
+	    }
 	    else {
 		    $mensaje = "Error: ".$sql." ".$conn->error;
 		    $error = TRUE;
 		}
-	
+
 }
 
 $respuesta = array($error,$mensaje);
 
-echo json_encode($respuesta); 
+echo json_encode($respuesta);
 
 mysqli_close($conexion);
 
-?> 
+?>

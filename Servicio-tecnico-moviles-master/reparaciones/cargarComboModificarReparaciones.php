@@ -24,10 +24,10 @@ $respuesta="";
     while($fila=mysqli_fetch_assoc($res)){
         $respuesta.='<option value="'.$fila['id_dispositivo'].'">';
         $respuesta.=$fila['marca']."-";
-        $respuesta.=$fila['modelo'];            
+        $respuesta.=$fila['modelo'];
         $respuesta.="</option>";
         }
-    
+
 echo $respuesta;
 
 mysqli_close($conexion);
