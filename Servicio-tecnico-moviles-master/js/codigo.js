@@ -76,7 +76,8 @@ Cobro.prototype = Object.create(Apunte.prototype);
 Cobro.prototype.constructor = Cobro;
 
 
-function Dispositivo(sMarca, sModelo, rGarantia, fEntrada, fSalida) {
+function Dispositivo(idDispositivo, sMarca, sModelo, rGarantia, fEntrada, fSalida) {
+    this.idDispositivo = idDispositivo;
     this.sMarca = sMarca;
     this.sModelo = sModelo;
     this.rGarantia = rGarantia;
@@ -87,7 +88,7 @@ function Dispositivo(sMarca, sModelo, rGarantia, fEntrada, fSalida) {
 
 
 //metodos
-class SAT {
+/*class SAT {
     constructor() {
         this._personas = [];
         this._dispositivos = [];
@@ -855,4 +856,4 @@ class SAT {
 
     return tabla;
 	}
-}
+}*/

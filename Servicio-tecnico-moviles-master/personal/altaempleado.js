@@ -1,4 +1,4 @@
-// Creacion del dialogo
+ // Creacion del dialogo
 $("#divfrmaltaempleado").dialog({
     autoOpen: true,  // Es el valor por defecto
     // beforeClose: antesDeCerrarse,
@@ -178,7 +178,7 @@ function respuestaAltaEmpleado(jqXHR, sStatus)
             alert(oDatosDevueltos[1]);
 
             // Como ha ido bien cierro el formulario
-            $("#frmAltaEmpleado").hide("normal").get(0).reset();
+            $("#divfrmaltaempleado").dialog("close"); 
 
         } else {
             alert(oDatosDevueltos[1]);

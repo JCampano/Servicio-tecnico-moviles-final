@@ -1,4 +1,4 @@
-var oSAT = new SAT();
+//var oSAT = new SAT();
 // Cargar datos desde XML
 //cargarDatosXML();
 //eventos botones menu
