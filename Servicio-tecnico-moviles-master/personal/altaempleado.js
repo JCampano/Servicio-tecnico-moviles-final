@@ -153,7 +153,6 @@ function validarAltaEmpleado(){
 		alert(sErrores);
 	else{
 		//altaEmpleado
-<<<<<<< HEAD
          $.ajax({
             url: "personal/altaempleado.php",
             async: true,
@@ -188,19 +187,6 @@ function respuestaAltaEmpleado(jqXHR, sStatus)
         alert("Error del servidor: " + sStatus);
     }
 }
-=======
-         $.ajax({
-            url: "personal/altaempleado.php",
-            async: true,
-            cache: false,
-            method: "POST",
-            dataType: "json",
-            data: $("#frmAltaEmpleado").serializeArray(),
-            //  beforeSend: prepararDatosEnvio,
-            complete: respuestaAltaEmpleado
-        });
-	   }
-}
 
 function respuestaAltaEmpleado(jqXHR, sStatus)
 {
@@ -223,4 +209,4 @@ function respuestaAltaEmpleado(jqXHR, sStatus)
         alert("Error del servidor: " + sStatus);
     }
 }
->>>>>>> origin/master
+
