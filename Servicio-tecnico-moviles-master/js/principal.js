@@ -313,19 +313,182 @@ function mostrarModificarReparacion(){
 		$('#divfrmmodificarreparacion').dialog("open");
     }
 }
-/*
-
-
-document.getElementById("navPago").addEventListener("click", mostrarNuevoPago, false);
-document.getElementById("navCobro").addEventListener("click", mostrarNuevoCobro, false);
 
 document.getElementById("navListadoClientes").addEventListener("click", mostrarListadoClientes, false);
-document.getElementById("navListadoDispositivos").addEventListener("click", mostrarListadoDispositivos, false);
 document.getElementById("navListadoProveedores").addEventListener("click", mostrarListadoProveedores, false);
 document.getElementById("navListadoEmpleados").addEventListener("click", mostrarListadoEmpleados, false);
-document.getElementById("navListadoReparaciones").addEventListener("click", mostrarListadoReparaciones, false);*/
+/*
+document.getElementById("navListadoDispositivos").addEventListener("click", mostrarListadoDispositivos, false);
 
 
+document.getElementById("navListadoReparaciones").addEventListener("click", mostrarListadoReparacionesFiltro, false);
+document.getElementById("navListadoPiezas").addEventListener("click", mostrarListadoPiezasFiltro, false);
+*/
+
+//LISTADOS
+function ocultarInicio(){
+	document.getElementById("jumbo").style.display = "none";	
+}
+	
+//document.getElementById("volverListadoCliente").addEventListener("click",volverListado,false);
+function volverListado(){
+	$("#listados").html("");
+	document.getElementById("jumbo").style.display = "block";		
+}
+
+var oAjaxListado = null;
+var tipoListado = null;
+
+function mostrarListadoClientes(){	
+	ocultarInicio();
+	$("#listados").html("");
+	tipoListado="clientes";
+	llamadaAjaxListado("clientes/listadoClientes.php");	
+}
+
+function mostrarListadoProveedores(){	
+	ocultarInicio();
+	$("#listados").html("");
+	tipoListado="proveedores";
+	llamadaAjaxListado("proveedores/listadoProveedores.php");	
+}
+
+function mostrarListadoEmpleados(){	
+	ocultarInicio();
+	$("#listados").html("");
+	tipoListado="empleados";
+	llamadaAjaxListado("personal/listadoEmpleados.php");	
+}
+
+/*
+function mostrarListadoDispositivos(){	
+	ocultarInicio();
+	tipoListado="dispositivos";
+	llamadaAjaxListado("clientes/listadoDispositivos.php");	
+}
+*/
+function objetoXHR() {
+			if (window.XMLHttpRequest) {
+				return new XMLHttpRequest();
+			} else if (window.ActiveXObject) {
+				var versionesIE = new Array('Msxml2.XMLHTTP.5.0', 'Msxml2.XMLHTTP.4.0', 'Msxml2.XMLHTTP.3.0', 'Msxml2.XMLHTTP', 'Microsoft.XMLHTTP');
+				for (var i = 0; i < versionesIE.length; i++) {
+					try {
+						return new ActiveXObject(versionesIE[i]);
+					} catch (errorControlado) {} //Capturamos el error,
+				}
+			}
+			throw new Error("No se pudo crear el objeto XMLHttpRequest");
+		}
+
+function llamadaAjaxListado(sURL){
+
+	oAjaxListado = objetoXHR();
+
+	oAjaxListado.open("GET",sURL,true);
+			
+	oAjaxListado.onreadystatechange = respuestaListado;
+
+	oAjaxListado.send(null);
+}
+
+
+function respuestaListado(){
+	if(oAjaxListado.readyState == 4 && oAjaxListado.status ==200){
+		//Recojo el documento XML en variable global
+		var oXML = oAjaxListado.responseXML;
+		switch(tipoListado){
+			//SIN FILTROS
+			case 'clientes':
+			procesaListadoClientesXML(oXML);
+			break;
+
+			case 'proveedores':
+			procesaListadoProveedoresXML(oXML);
+			break;
+
+			case 'empleados':
+			procesaListadoEmpleadosXML(oXML);
+			break;			
+	
+			//CON FILTROS
+	
+			case 'dispositivos':
+			procesaListadoDispositivosXML(oXML);
+			break;
+
+			case 'reparaciones':
+			procesaListadoReparacionesXML(oXML);
+			break;
+
+			case 'FGFGGFFGSG':
+			(oXML);
+			break;
+		}					
+	}
+}
+
+function procesaListadoClientesXML(oXML){		
+	var jqTabla = $('<table class="table" id="listado">');
+	
+	var oCliente = oXML.getElementsByTagName("cliente");
+	$('<tr><th>DNI</th><th>NOMBRE</th><th>APELLIDOS</th><th>TELEFONO</th><th>DIRECCION</th>').appendTo(jqTabla);
+	
+	for(var i=0;i<oCliente.length;i++){
+		$('<tr>' +
+			'<td>'+oCliente[i].getElementsByTagName('idcliente')[0].textContent+'</td>' +
+			'<td>'+oCliente[i].getElementsByTagName('nombre')[0].textContent+'</td>' +
+			'<td>'+oCliente[i].getElementsByTagName('apellido')[0].textContent+'</td>' +
+			'<td>'+oCliente[i].getElementsByTagName('movil')[0].textContent+'</td>' +
+			'<td>'+oCliente[i].getElementsByTagName('direccion')[0].textContent+'</td>' +
+		 '</tr>').appendTo(jqTabla);
+	 }	
+	 jqTabla.appendTo("#listados");
+	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
+	 
+}
+
+
+function procesaListadoEmpleadosXML(oXML){
+	var jqTabla = $('<table class="table" id="listado">');
+		
+	var oEmpleado = oXML.getElementsByTagName("empleado");
+	$('<tr><th>ID</th><th>NOMBRE</th><th>APELLIDOS</th><th>TELEFONO</th><th>DIRECCION</th>').appendTo(jqTabla);
+	
+	for(var i=0;i<oEmpleado.length;i++){
+		$('<tr>' +
+			'<td>'+oEmpleado[i].getElementsByTagName('id')[0].textContent+'</td>' +
+			'<td>'+oEmpleado[i].getElementsByTagName('nombre')[0].textContent+'</td>' +
+			'<td>'+oEmpleado[i].getElementsByTagName('apellido')[0].textContent+'</td>' +
+			'<td>'+oEmpleado[i].getElementsByTagName('movil')[0].textContent+'</td>' +
+			'<td>'+oEmpleado[i].getElementsByTagName('direccion')[0].textContent+'</td>' +
+		 '</tr>').appendTo(jqTabla);
+	 }	
+	 jqTabla.appendTo("#listados");
+	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
+	 
+}
+
+
+function procesaListadoProveedoresXML(oXML){
+	var jqTabla = $('<table class="table" id="listado">');	
+	
+	var oProveedor = oXML.getElementsByTagName("proveedor");
+	$('<tr><th>ID</th><th>NOMBRE</th><th>APELLIDOS</th><th>TELEFONO</th><th>DIRECCION</th>').appendTo(jqTabla);
+	
+	for(var i=0;i<oProveedor.length;i++){
+		$('<tr>' +
+			'<td>'+oProveedor[i].getElementsByTagName('id')[0].textContent+'</td>' +
+			'<td>'+oProveedor[i].getElementsByTagName('nombre')[0].textContent+'</td>' +
+			'<td>'+oProveedor[i].getElementsByTagName('apellido')[0].textContent+'</td>' +
+			'<td>'+oProveedor[i].getElementsByTagName('movil')[0].textContent+'</td>' +
+			'<td>'+oProveedor[i].getElementsByTagName('direccion')[0].textContent+'</td>' +
+		 '</tr>').appendTo(jqTabla);
+	 }	
+	 jqTabla.appendTo("#listados");
+	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
+	 
+}
 
 //eventos botones aceptar
 /*
@@ -823,80 +986,3 @@ function cargarDatosXML(){
 }
 */
 
-/*
-//DATOS DE PRUEBA
-function cargaDatosDePrueba(){
-	//clientes
-		var oCliente = new Cliente("Fernando","Berenguer","11111111B", "999999999", "Calle 1");
-		var cliente = oSAT.altaCliente(oCliente);
-
-		oCliente = new Cliente("Adrian","Giampaslia","22222222B", "666666666", "Calle 2");
-		cliente = oSAT.altaCliente(oCliente);
-
-		oCliente = new Cliente("Jose Antonio","Campano","33333333C", "666999666", "Calle 3");
-		cliente = oSAT.altaCliente(oCliente);	
-		
-		
-	//Empleados
-		var oEmpleado = new Personal("Carlos","Rodriguez","44444444H", "987654321", "Calle JavaScript", "ES0000000000000000000000", "Messi JS");
-		var empleado = oSAT.altaEmpleado(oEmpleado);
-		
-		oEmpleado = new Personal("Juan","Vilches","55555555G", "965236124", "Calle PHP", "ES0000000000000000000010", "DJ SESSION");
-		empleado = oSAT.altaEmpleado(oEmpleado);
-		
-		oEmpleado = new Personal("David","De Vega","66666666T", "658745698", "Calle Bootstrap","ES0000000000002000000010", "Profesor vale");
-		empleado = oSAT.altaEmpleado(oEmpleado);
-
-		
-	//Proveedor
-		var oProveedor = new Proveedor("Pantallas","ScreenDispatch","B56789098");
-		var proveedor = oSAT.altaProveedor(oProveedor);
-		
-		oProveedor = new Proveedor("Botones","Joystick's SL","B12343254");
-		proveedor = oSAT.altaProveedor(oProveedor);
-		
-		oProveedor = new Proveedor("Carcasas","Chen Li","B34234654");
-		proveedor = oSAT.altaProveedor(oProveedor);
-		
-	//Piezas
-		var oPieza = new Pieza_Repuesto("Grande","Bateria","1111");
-		var pieza = oSAT.altaPieza(oPieza);
-		
-		oPieza = new Pieza_Repuesto("Mediana","Bateria","1112");
-		pieza = oSAT.altaPieza(oPieza);
-		
-		oPieza = new Pieza_Repuesto("Pequeña","Bateria","1113");
-		pieza = oSAT.altaPieza(oPieza);
-	
-	//dispositivos       
-        var oDispositivos = new Dispositivo("Sony", "Z", "S", new Date("2011-03-12"), new Date("2012-01-04"));
-        var dispositivo = oSAT.altaDispositivos(oDispositivos);
-		      
-        oDispositivos = new Dispositivo("Samsung", "Galaxy S8", "N", new Date("2011-03-12"), new Date("2012-01-04"));
-        dispositivo = oSAT.altaDispositivos(oDispositivos);
-		       
-        oDispositivos = new Dispositivo("Lg", "3310", "S", new Date("2011-03-12"), new Date("2012-01-04"));
-        dispositivo = oSAT.altaDispositivos(oDispositivos);
-		
-	//Reparaciones
-		var oReparacion = new Reparacion("Lg 3310", "Panalla rota", "Esperando material", "75,50", "Trae marcas de uso en los laterales");
-		var reparacion = oSAT.altaReparacion(oReparacion);
-		
-		oReparacion = new Reparacion("Sony Z", "Boton desbloqueo no funciona", "Esperando cliente", "60", "Reemplazar la bateria por una nueva");
-		reparacion = oSAT.altaReparacion(oReparacion);
-	
-	//Pago
-		var oPago = new Pago("10€", new Date("2012-03-12"), "estado", "asunto", "22222222a","33333333b");
-		var pago = oSAT.altaPago(oPago);
-	
-		var oPago = new Pago("2", new Date("2012-05-12"), "estado", "asunto", "22222222b","33333333b");
-		var pago = oSAT.altaPago(oPago);
-		
-	//Cobro
-		var oCobro = new Cobro("10€", new Date("2012-03-2"), "estado", "asunto", "22222222a","11111111a");
-		var cobro = oSAT.altaCobro(oCobro);
-	
-		var oCobro = new Cobro("2", new Date("2012-05-1"), "estado", "asunto", "22222222b","11111111b");
-		var cobro = oSAT.altaCobro(oCobro);
-	
-}*/
