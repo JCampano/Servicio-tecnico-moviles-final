@@ -88,5 +88,27 @@ function validarAltaProveedor(){
 		alert(sErrores);
 	else{
 		//altaProveedor
+        var sDatos = $("#frmAltaProveedor").serialize();
+
+        $.post("proveedores/altaproveedor.php", sDatos, respuestaAltaProveedor, 'json');
 	}		
+     function respuestaAltaProveedor(oDatosDevueltos, sStatus, oAjax) {
+
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) 
+            {
+                // Mensaje
+                alert(oDatosDevueltos[1]);
+
+                // Como ha ido bien cierro el formulario
+                $("#divfrmaltaproveedor").dialog("close"); 
+
+            } 
+        else 
+            {
+                alert(oDatosDevueltos[1]);
+            }
+
+
+    }
 }

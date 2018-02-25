@@ -90,5 +90,27 @@ function validarModificarProveedor(){
 		alert(sErrores);
 	else{
 		//modif proveedor
+	       var sDatos = $("#frmModificarProveedor").serialize();
+
+        $.post("proveedores/modificarproveedor.php", sDatos, respuestaModificarProveedor, 'json');
 	}		
+     function respuestaModificarProveedor(oDatosDevueltos, sStatus, oAjax) {
+
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) 
+            {
+                // Mensaje
+                alert(oDatosDevueltos[1]);
+
+                // Como ha ido bien cierro el formulario
+                $("#divfrmmodificarproveedor").dialog("close"); 
+
+            } 
+        else 
+            {
+                alert(oDatosDevueltos[1]);
+            }
+
+
+    }	
 }

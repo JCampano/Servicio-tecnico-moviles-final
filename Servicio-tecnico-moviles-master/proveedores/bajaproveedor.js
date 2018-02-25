@@ -62,5 +62,26 @@ function validarBajaProveedor(){
 		alert(sErrores);
 	else{
 		//bajaProveedor
-	}		
+	   var sDatos = $("#frmBajaProveedor").serialize();
+
+        $.post("proveedores/bajaproveedor.php", sDatos, respuestaBajaProveedor, 'json');
+
+    }
+
+function respuestaBajaProveedor(oDatosDevueltos, sStatus, oAjax) {
+
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
+
+            // Como ha ido bien cierro el formulario
+            $("#divfrmbajaproveedor").dialog("close"); 
+
+        } else {
+            alert(oDatosDevueltos[1]);
+        }
+
+
+    }		
 }
