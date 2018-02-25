@@ -155,5 +155,37 @@ function validarModificarEmpleado(){
 		alert(sErrores);
 	else{
 		//modificarEmpleado
+         $.ajax({
+            url: "personal/modificarempleado.php",
+            async: true,
+            cache: false,
+            method: "POST",
+            dataType: "json",
+            data: $("#frmModificarEmpleado").serializeArray(),
+            //  beforeSend: prepararDatosEnvio,
+            complete: respuestaModificarEmpleado
+        });
 	}		
+}
+
+function respuestaModificarEmpleado(jqXHR, sStatus)
+{
+    var oDatosDevueltos = JSON.parse(jqXHR.responseText);
+    //var oDatosDevueltos = jqXHR.responseJSON;
+
+    if (sStatus == "success") {
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
+
+            // Como ha ido bien cierro el formulario
+            $("#divfrmmodificarempleado").dialog("close");
+
+        } else {
+            alert(oDatosDevueltos[1]);
+        }
+    } else {
+        alert("Error del servidor: " + sStatus);
+    }
 }

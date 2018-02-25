@@ -60,5 +60,37 @@ function validarBajaEmpleado(){
 		alert(sErrores);
 	else{
 		//bajaEmpleado
+         $.ajax({
+            url: "personal/bajaempleado.php",
+            async: true,
+            cache: false,
+            method: "POST",
+            dataType: "json",
+            data: $("#frmBajaEmpleado").serializeArray(),
+            //  beforeSend: prepararDatosEnvio,
+            complete: respuestaBajaEmpleado
+        });
 	}		
+}
+
+function respuestaBajaEmpleado(jqXHR, sStatus)
+{
+    var oDatosDevueltos = JSON.parse(jqXHR.responseText);
+    //var oDatosDevueltos = jqXHR.responseJSON;
+
+    if (sStatus == "success") {
+        // oDatosDevueltos[0]  --- si hay o no error
+        if (oDatosDevueltos[0] == false) {
+            // Mensaje
+            alert(oDatosDevueltos[1]);
+
+            // Como ha ido bien cierro el formulario
+            $("#divfrmbajaempleado").dialog("close");
+
+        } else {
+            alert(oDatosDevueltos[1]);
+        }
+    } else {
+        alert("Error del servidor: " + sStatus);
+    }
 }

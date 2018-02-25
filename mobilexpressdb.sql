@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2018 a las 18:31:34
+-- Tiempo de generación: 25-02-2018 a las 14:48:57
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -67,8 +67,10 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`dni_o_cif`, `tipo`, `nombre`, `apellidos`, `telefono`, `direccion`) VALUES
 ('25768546S', 'Proveedor', 'Retrocables', 'SL', 954346578, 'Calle suspenso infinito nº1'),
-('25958476R', 'Personal', 'Adrian', 'Yampasila', 658347658, 'Calle Javascript nº4'),
-('30285734G', 'Cliente', 'Juan', 'Vilches', 867458614, 'Calle PHP nº10');
+('30285734G', 'Cliente', 'Juan', 'Vilches', 867458614, 'Calle PHP nº10'),
+('30456765F', 'Empleado', 'Adrian', 'Suano', 954678656, 'Cloroformo'),
+('30567475F', 'Cliente', 'Jairito', 'NoMeRayes', 954764534, 'Callecita '),
+('30657345F', 'Cliente', 'Fernando', 'Berenguer', 956453456, 'niidea');
 
 -- --------------------------------------------------------
 
@@ -104,15 +106,15 @@ CREATE TABLE `reparacion` (
   `averia` varchar(60) NOT NULL,
   `importe` float NOT NULL,
   `comentarios` varchar(100) NOT NULL,
-  `en_reparacion` boolean NOT NULL
+  `en_reparacion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `reparacion`
 --
 
-INSERT INTO `reparacion` (`id_reparacion`, `dni_solicitante`, `modelo`, `averia`, `importe`, `comentarios`,`en_reparacion`) VALUES
-(1122, '25768546S', 'Galaxy S8', 'Bateria dañada', 30, 'Se ha sustituido la bateria.', true);
+INSERT INTO `reparacion` (`id_reparacion`, `dni_solicitante`, `modelo`, `averia`, `importe`, `comentarios`, `en_reparacion`) VALUES
+(1122, '25768546S', 'Galaxy S8', 'Bateria dañada', 30, 'Se ha sustituido la bateria.', 1);
 
 -- --------------------------------------------------------
 
