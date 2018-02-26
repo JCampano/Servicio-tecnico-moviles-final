@@ -36,22 +36,18 @@ function volverModificarReparacion(){
 function reiniciarValidacionesModificarReparacion(){
 	document.frmModificarReparacion.reset();
 	document.frmModificarReparacion.averiaReparacion.style.background = "white";	
-	document.frmModificarReparacion.estadoReparacion.style.background = "white";	
-	document.frmModificarReparacion.importeReparacion.style.background = "white";
 	document.frmModificarReparacion.comentarioReparacion.style.background = "white";	
 	document.frmModificarReparacion.repararDispositivoModificar.style.background = "white";
 }
 
 function validarModificarReparacion(){
-	var averia = document.frmModificarReparacion.averiaReparacion.value.trim();
-	var estado = document.frmModificarReparacion.estadoReparacion.value.trim();
-	var importe = document.frmModificarReparacion.importeReparacion.value.trim();
+	var averia = document.frmModificarReparacion.averiaReparacion.value.trim();	
 	var comentarios = document.frmModificarReparacion.comentarioReparacion.value.trim();
+	var id = document.frmModificarReparacion.repararDispositivoModificar.value;
 	
 	var errores = false;
 	
 	var expRegAveria = /^[a-zA-Z\s]{3,10}$/;
-	var expRegEstado = /^[a-zA-Z\s]{3,10}$/;
 	var expRegImporte = /^\d*[.]?\d{1,3}[€]$/;
 	var expRegComentarios =  /^.{3,500}$/;
 	
@@ -78,28 +74,6 @@ function validarModificarReparacion(){
 		document.frmModificarReparacion.averiaReparacion.style.background = "white";	
 	}
 	
-	//Estado
-	if (expRegEstado.test(estado) == false){	
-		errores = true;				
-		document.frmModificarReparacion.estadoReparacion.focus(); //Este campo obtiene el foco		
-		sErrores += "El campo Estado debe contener entre 3 y 10 letras\n";				
-		document.frmModificarReparacion.estadoReparacion.style.background = "yellow"; //Marcar error
-	}
-	else { //Desmarcar error
-		document.frmModificarReparacion.estadoReparacion.style.background = "white";	
-	}
-	
-	//Importe
-	if (expRegImporte.test(importe) == false){	
-		errores = true;				
-		document.frmModificarReparacion.importeReparacion.focus(); //Este campo obtiene el foco		
-		sErrores += 'El campo Importe debe contener numeros y acabar con el caracter €\n';				
-		document.frmModificarReparacion.importeReparacion.style.background = "yellow"; //Marcar error
-	}
-	else { //Desmarcar error
-		document.frmModificarReparacion.importeReparacion.style.background = "white";	
-	}
-	
 	//Comentarios
 	if (expRegComentarios.test(comentarios) == false){	
 		errores = true;				
@@ -115,8 +89,31 @@ function validarModificarReparacion(){
 		alert(sErrores);
 	else{
 		//modificarReparacion
-	}		
+		var sDatos = $("#frmModificarReparacion").serialize();
+
+        $.post("reparaciones/modificarReparacion.php", sDatos, respuestaModificarReparacion, 'json');
+
+    }
 }
+    function respuestaModificarReparacion(oDatosDevueltos, sStatus, oAjax) {
+
+    // oDatosDevueltos[0]  --- si hay o no error
+    if (oDatosDevueltos[0] == false) 
+        {
+            // Mensaje
+            alert(oDatosDevueltos[1]);  
+		// Como ha ido bien cierro el formulario
+          volverModificarReparacion();			
+
+        } 
+    else 
+        {
+            alert(oDatosDevueltos[1]);
+        }
+
+
+    }				
+
 
 
 function cargarComboModificarReparaciones(){

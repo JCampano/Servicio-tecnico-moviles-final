@@ -44,13 +44,34 @@ function validarBajaReparacion(){
 	if(document.frmBajaReparacion.repararDispositivoBaja.value.trim() != "Lista de dispositivos en reparación"){
         var dispositivo = document.frmBajaReparacion.repararDispositivoBaja.value.trim();
        document.frmBajaReparacion.repararDispositivoBaja.style.background = "white";
-        //bajaReparacion
-	}
+      
+	  var sDatos = $("#frmBajaReparacion").serialize();
+        $.post("reparaciones/bajaReparacion.php", sDatos, respuestaBajaReparacion, 'json');
+
+    }
 	else{ 
 		alert("Debe seleccionar una reparación");
 	 document.frmBajaReparacion.repararDispositivoBaja.style.background = "yellow";
 	}
 }
+    function respuestaBajaReparacion(oDatosDevueltos, sStatus, oAjax) {
+
+    // oDatosDevueltos[0]  --- si hay o no error
+    if (oDatosDevueltos[0] == false){
+            // Mensaje
+            alert(oDatosDevueltos[1]);  
+		// Como ha ido bien cierro el formulario
+            volverBajaReparacion(); 			
+
+        } 
+    else 
+        {
+            alert(oDatosDevueltos[1]);
+        }
+}		
+
+	
+
 
 
 function cargarComboBajaReparaciones(){
