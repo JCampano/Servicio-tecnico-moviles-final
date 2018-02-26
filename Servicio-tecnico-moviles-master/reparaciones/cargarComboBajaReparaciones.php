@@ -1,7 +1,7 @@
 <?php
 //no chachee la llamada
-//header('Cache-Control: no-cache, must-revalidate');
-//header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Cache-Control: no-cache, must-revalidate');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 $servidor  = "localhost";
 $basedatos = "mobilexpressdb";
 $usuario   = "root";
@@ -16,14 +16,13 @@ $conexion = mysqli_connect($servidor, $usuario, $password, $basedatos);//el para
 
 $conexion ->set_charset("utf8");//asi es el caracter utf8 si es msqli
 
-$sql = "select dispositivo.id_dispositivo,dispositivo.marca,dispositivo.modelo from dispositivo,reparacion_dispositivo,reparacion where reparacion.en_reparacion = true AND reparacion.id_reparacion=reparacion_dispositivo.id_reparacion AND reparacion_dispositivo.id_dispositivo=dispositivo.id_dispositivo;";
+$sql = "select reparacion.id_reparacion from reparacion;";
 
 $res = $conexion->query($sql);
 $respuesta="";
     while($fila=mysqli_fetch_assoc($res)){
-        $respuesta.='<option value="'.$fila['id_dispositivo'].'">';
-        $respuesta.=$fila['marca']."-";
-        $respuesta.=$fila['modelo'];
+        $respuesta.='<option value="'.$fila['id_reparacion'].'">';
+        $respuesta.=$fila['id_reparacion'];
         $respuesta.="</option>";
         }
 

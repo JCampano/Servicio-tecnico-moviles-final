@@ -58,7 +58,7 @@ function validarAltaReparacion(){
 	
 	var expRegAveria = /^[a-zA-Z\s]{3,10}$/;
 	var expRegEstado = /^[a-zA-Z\s]{3,10}$/;
-	var expRegidReparacion = /^\[0-9]{4}/;
+	var expRegidReparacion = /^[0-9]{4}/;
 	var expRegComentarios =  /^.{3,500}$/;
 	
 	
@@ -129,8 +129,31 @@ function validarAltaReparacion(){
 		alert(sErrores);
 	else{
 		//alta reparacion
-	}		
+	var sDatos = $("#frmAltaReparacion").serialize();
+
+        $.post("reparaciones/altaReparacion.php", sDatos, respuestaAltaReparacion, 'json');
+
+    }
 }
+    function respuestaAltaReparacion(oDatosDevueltos, sStatus, oAjax) {
+
+    // oDatosDevueltos[0]  --- si hay o no error
+    if (oDatosDevueltos[0] == false) 
+        {
+            // Mensaje
+            alert(oDatosDevueltos[1]);  
+		// Como ha ido bien cierro el formulario
+            volverAltaReparacion(); 			
+
+        } 
+    else 
+        {
+            alert(oDatosDevueltos[1]);
+        }
+
+
+    }		
+
 
 
 function cargarComboAltaReparaciones(){
