@@ -231,8 +231,11 @@ function mostrarAltaPieza(){
 
     } else {// si se cargo abrimos el dialogo  
 		reiniciarValidacionesAltaPieza();
-		cargarComboIdReparacion();
 		vaciarComboIdReparacion();
+		cargarComboIdReparacion();
+		vaciarComboCifProveedor();		
+		cargarComboCifProveedor();
+		
 		$('#divfrmaltapieza').dialog("open");		
     }
 }

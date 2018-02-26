@@ -29,6 +29,7 @@ $("#divfrmaltapieza").dialog({
 document.getElementById("altaPieza").addEventListener("click",validarAltaPieza,false);
 document.frmAltaPieza.volver.addEventListener("click",volverAltaPieza,false);
 cargarComboIdReparacion();
+cargarComboCifProveedor();
 
 function volverAltaPieza(){
 	$("#divfrmaltapieza").dialog("close");    	
@@ -42,7 +43,6 @@ function reiniciarValidacionesAltaPieza(){
 	document.frmAltaPieza.tipoPieza.style.background = "white";
 	document.frmAltaPieza.precioPieza.style.background = "white";
     document.frmAltaPieza.idReparacionAltaPieza.style.background = "white";
-    document.frmAltaPieza.cifProveedor.style.background = "white";
 }
 
 function validarAltaPieza(){
@@ -55,8 +55,7 @@ function validarAltaPieza(){
 	var errores = false;
 	var expRegNumSerie = /^[a-zA-Z0-9]{4}$/;
 	var expRegTipo = /^[a-zA-Z\s]{3,20}$/;
-	var expRegPrecio = /^\d*[.]?\d{1,3}$/;
-    var expIdReparacion = /^[a-zA-Z0-9]{4}$/;
+	var expRegPrecio = /^\d*[.]?\d{1,3}$/;    
     var expCifProveedor = /^\d{8}\w$/;
 		
 	//validaciones
@@ -96,26 +95,15 @@ function validarAltaPieza(){
 	}
 
     //ID Reparación
-    if (expIdReparacion.test(idReparacion) == false){
+    if (idReparacion ==""){
 		errores = true;
-		document.frmAltaPieza.idReparacion.focus();	//Este campo obtiene el foco
-		sErrores += "El id de reparación debe contener 4 caracteres \n";
-		document.frmAltaPieza.idReparacion.style.background = "yellow";  //Marcar error
+		document.frmAltaPieza.idReparacionAltaPieza.focus();	//Este campo obtiene el foco
+		sErrores += "Primero debe dar de alta una reparacion \n";
+		document.frmAltaPieza.idReparacionAltaPieza.style.background = "yellow";  //Marcar error
 	}
 	else {//Desmarcar error
-		document.frmAltaPieza.idReparacion.style.background = "white";
-	}
-
-    //CIF Proveedor
-    if (expCifProveedor.test(cifProveedor) == false){
-		errores = true;
-		document.frmAltaPieza.cifProveedor.focus();	//Este campo obtiene el foco
-		sErrores += "El cif de proveedor debe contener 8 números y acabar en 1 letra\n";
-		document.frmAltaPieza.cifProveedor.style.background = "yellow";  //Marcar error
-	}
-	else {//Desmarcar error
-		document.frmAltaPieza.cifProveedor.style.background = "white";
-	}
+		document.frmAltaPieza.idReparacionAltaPieza.style.background = "white";
+	}    
 	
 	if(errores)
 		alert(sErrores);
@@ -186,4 +174,27 @@ function cargarComboIdReparacion(){
 $("#idReparacionAltaPieza").load("piezasderepuesto/comboIdReparacion.php");
 
 }
-function vaciarComboIdReparacion(){}
+
+function vaciarComboIdReparacion(){
+	$('#idReparacionAltaPieza').each(function(){
+          $('#idReparacionAltaPieza option').remove();
+      });
+}
+
+
+function vaciarComboCifProveedor(){
+	$('#cifProveedor').each(function(){
+          $('#cifProveedor option').remove();
+      });
+}
+
+function cargarComboCifProveedor(){
+	//con load
+$("#cifProveedor").load("piezasderepuesto/cargarComboCifProveedor.php");
+}
+
+
+
+
+
+

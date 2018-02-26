@@ -16,13 +16,14 @@ $conexion = mysqli_connect($servidor, $usuario, $password, $basedatos);//el para
 
 $conexion ->set_charset("utf8");//asi es el caracter utf8 si es msqli
 
-$sql = "select id_reparacion from reparacion where Not id_reparacion In (Select id_reparacion From piezas)";
+$sql = 'select dni_o_cif, nombre, apellidos from persona where tipo = "Proveedor"';
 
 $res = $conexion->query($sql);
 $respuesta="";
     while($fila=mysqli_fetch_assoc($res)){
-        $respuesta.='<option value="'.$fila['id_reparacion'].'">';
-        $respuesta.=$fila['id_reparacion'];        
+        $respuesta.='<option value="'.$fila['dni_o_cif'].'">';
+        $respuesta.=$fila['nombre']." ";
+        $respuesta.=$fila['apellidos'];
         $respuesta.="</option>";
         }
 
