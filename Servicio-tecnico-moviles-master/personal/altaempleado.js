@@ -187,26 +187,3 @@ function respuestaAltaEmpleado(jqXHR, sStatus)
         alert("Error del servidor: " + sStatus);
     }
 }
-
-function respuestaAltaEmpleado(jqXHR, sStatus)
-{
-    var oDatosDevueltos = JSON.parse(jqXHR.responseText);
-    //var oDatosDevueltos = jqXHR.responseJSON;
-
-    if (sStatus == "success") {
-        // oDatosDevueltos[0]  --- si hay o no error
-        if (oDatosDevueltos[0] == false) {
-            // Mensaje
-            alert(oDatosDevueltos[1]);
-
-            // Como ha ido bien cierro el formulario
-            $("#divfrmaltaempleado").dialog("close");
-
-        } else {
-            alert(oDatosDevueltos[1]);
-        }
-    } else {
-        alert("Error del servidor: " + sStatus);
-    }
-}
-
