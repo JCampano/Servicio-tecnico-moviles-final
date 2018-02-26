@@ -46,7 +46,7 @@ function validarModificarPieza(){
 	var errores = false;
 	var expRegId = /^[a-zA-Z0-9]{4}$/;
 	var expRegTipo = /^[a-zA-Z\s]{3,20}$/;
-	var expRegPrecio = /^\d*[.]?\d{1,3}[€]$/;
+	var expRegPrecio = /^\d*[.]?\d{1,3}$/;
 		
 	//validaciones
 	var sErrores = "";
@@ -87,6 +87,61 @@ function validarModificarPieza(){
 	if(errores)
 		alert(sErrores);
 	else{
-		//modif pieza
-	}		
+		//modificar
+       var oPieza = new Pieza_Repuesto(id, tipo, precio, "", "");
+	   
+		var sParametroPOST ="datos=" + JSON.stringify(oPieza);
+		
+       // sParametroPOST = encodeURI(sParametroPOST);
+
+        var sURL = "piezasderepuesto/modificarpieza.php";
+
+	    llamadaAjaxAltaPieza(sURL,sParametroPOST);
+	
+	}
+       
+		
 }
+
+/* LLAMADAS AJAX */
+function llamadaAjaxAltaPieza(sURL,sParametroPOST){
+
+	oAjaxAltaPieza = objetoXHR();
+
+	oAjaxAltaPieza.open("POST",sURL,true);
+
+    oAjaxAltaPieza.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+	oAjaxAltaPieza.onreadystatechange = respuestaAltaPieza;
+
+
+	oAjaxAltaPieza.send(sParametroPOST);
+}
+
+function respuestaAltaPieza(){
+
+	if(oAjaxAltaPieza.readyState == 4 && oAjaxAltaPieza.status ==200)	{
+		var oArrayRespuesta = JSON.parse(oAjaxAltaPieza.responseText);
+
+		if (oArrayRespuesta[0] == true){
+			alert(oArrayRespuesta[1]);
+		} else {
+			alert(oArrayRespuesta[1]);
+            $("#divfrmmodificarpieza").dialog("close");
+		}
+	}
+}
+
+function objetoXHR() {
+        if (window.XMLHttpRequest) {
+            return new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+            var versionesIE = new Array('Msxml2.XMLHTTP.5.0', 'Msxml2.XMLHTTP.4.0', 'Msxml2.XMLHTTP.3.0', 'Msxml2.XMLHTTP', 'Microsoft.XMLHTTP');
+            for (var i = 0; i < versionesIE.length; i++) {
+                try {
+                    return new ActiveXObject(versionesIE[i]);
+                } catch (errorControlado) {} //Capturamos el error,
+            }
+        }
+        throw new Error("No se pudo crear el objeto XMLHttpRequest");
+}	
