@@ -231,6 +231,7 @@ function mostrarAltaPieza(){
 
     } else {// si se cargo abrimos el dialogo  
 		reiniciarValidacionesAltaPieza();	
+		vaciarComboNumSerie();
 		$('#divfrmaltapieza').dialog("open");		
     }
 }
@@ -278,6 +279,9 @@ function mostrarAltaReparacion(){
     } else {// si se cargo abrimos el dialogo   
 		reiniciarValidacionesAltaReparacion();
 		vaciarComboAltaReparaciones();
+		vaciarComboAltaSolicitante();
+		cargarComboAltaReparaciones();
+		cargarComboAltaSolicitante();
 		$('#divfrmaltareparacion').dialog("open");
     }
 }
