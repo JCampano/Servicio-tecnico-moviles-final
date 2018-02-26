@@ -37,55 +37,20 @@ function reiniciarValidacionesListadoDispositivos(){
 }
 
 function comprobarListadoDispositivos(){
-
-    var garantia = document.frmListadoDispositivos.garantiaDispositivo.value.trim();
-    var sql = "SELECT ";
         /*
 	ocultarInicio();
     $("#listados").html("");
 	tipoListado="dispositivos";
 	llamadaAjaxListado("dispositivos/listadoDispositivos.php");
     */
+    var sDatos = $("#frmListadoDispositivos").serialize();
+    $.post("dispositivos/listadodispositivos.php", sDatos, respuestaListadoDispositivos, 'json');
 
-    /*
-		//dar de alta en la base de datos
-    var sDatos = $("#frmAltaCliente").serialize();
-
-    $.post("clientes/altacliente.php", sDatos, respuestaAltaCliente, 'json');
-
-    function respuestaAltaCliente(oDatosDevueltos, sStatus, oAjax) {
-
-    // oDatosDevueltos[0]  --- si hay o no error
-    if (oDatosDevueltos[0] == false)
-        {
-            // Mensaje
-            alert(oDatosDevueltos[1]);
-
-            // Como ha ido bien cierro el formulario
-            $("#divfrmaltacliente").dialog("close");
-
-        }
-    else
-        {
-            alert(oDatosDevueltos[1]);
-        }
+function respuestaListadoDispositivos(oDatosDevueltos, sStatus, oAjax) {
 
 
-    }*/
+            $("#divfrmlistadodispositivos").dialog("close");
+            alert("hola");
 
-    if (garantia!="S" && garantia!="N")
-        {
-
-        }
-    else
-    {
-     if(garantia=="S")
-         {
-
-         }
-        else
-        {
-
-        }
     }
 }
