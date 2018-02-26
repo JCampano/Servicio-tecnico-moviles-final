@@ -45,7 +45,7 @@ else
 		    $error = FALSE;
 	    }
 	    else {
-		    $mensaje = "Error: ".$sql." ".$conn->error;
+		    $mensaje = "Error: ".$sql." ".$conexion->error;
 		    $error = TRUE;
 		}
 

@@ -1,3 +1,4 @@
+//# sourceURL=altaCasa/altaCasa.js
 // Creacion del dialogo
 $("#divfrmaltapieza").dialog({
     autoOpen: true,  // Es el valor por defecto
@@ -50,7 +51,7 @@ function validarAltaPieza(){
 	var errores = false;
 	var expRegNumSerie = /^[a-zA-Z0-9]{4}$/;
 	var expRegTipo = /^[a-zA-Z\s]{3,20}$/;
-	var expRegPrecio = /^\d*[.]?\d{1,3}[€]$/;
+	var expRegPrecio = /^\d*[.]?\d{1,3}$/;
     var expIdReparacion = /^[a-zA-Z0-9]{4}$/;
     var expCifProveedor = /^\d{8}\w$/;
 		
@@ -83,7 +84,7 @@ function validarAltaPieza(){
 	if (expRegPrecio.test(precio) == false){	
 		errores = true;				
 		document.frmAltaPieza.precioPieza.focus(); //Este campo obtiene el foco		
-		sErrores += 'El campo Precio debe contener numeros y acabar con el caracter €\n';				
+		sErrores += 'El campo Precio debe contener numeros \n';				
 		document.frmAltaPieza.precioPieza.style.background = "yellow"; //Marcar error
 	}
 	else { //Desmarcar error
@@ -116,16 +117,21 @@ function validarAltaPieza(){
 		alert(sErrores);
 	else{
 		//altaPieza
-        var oPieza = new Pieza_Repuesto(numSerie, tipo, precio, idReparacion, cifProveedor);
+       var oPieza = new Pieza_Repuesto(numSerie, tipo, precio, idReparacion, cifProveedor);
+	   
+		var sParametroPOST ="datos=" + JSON.stringify(oPieza);
+		
+       // sParametroPOST = encodeURI(sParametroPOST);
 
-        var sParametroPOST = "datos=" + JSON.stringify(oPieza);
-
-        sParametroPOST = encodeURI(sParametroPOST);
-
-        var sURL = encodeURI("piezasderepuesto/altapieza.php");
+        var sURL = "piezasderepuesto/altapieza.php";
 
 	    llamadaAjaxAltaPieza(sURL,sParametroPOST);
-	}	
+	
+	};
+		
+		
+       
+		
 }
 
 /* LLAMADAS AJAX */

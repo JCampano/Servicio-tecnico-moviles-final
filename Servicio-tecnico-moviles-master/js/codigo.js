@@ -4,7 +4,7 @@ function Pieza_Repuesto(sNumSerie, sTipo, fPrecio, sIdReparacion, sCifProveedor)
     this.fPrecio = fPrecio;
     this.sIdReparacion = sIdReparacion;
     this.sCifProveedor = sCifProveedor;
-    this.bActivo = true;
+   // this.bActivo = true;
 }
 
 function Reparacion(sIdReparacion, sDniSolicitante,sModelo, sAveria, fImportePresupuestado, sComentarios) {
