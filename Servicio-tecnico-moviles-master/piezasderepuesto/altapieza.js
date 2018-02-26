@@ -36,9 +36,12 @@ function volverAltaPieza(){
 
 function reiniciarValidacionesAltaPieza(){
 	document.frmAltaPieza.reset();
-	document.frmAltaPieza.idPieza.style.background = "white";
-	document.frmAltaPieza.tipoPieza.style.background = "white";	
+		
+	document.frmAltaPieza.numSerie.style.background = "white";
+	document.frmAltaPieza.tipoPieza.style.background = "white";
 	document.frmAltaPieza.precioPieza.style.background = "white";
+    document.frmAltaPieza.idReparacion.style.background = "white";
+    document.frmAltaPieza.cifProveedor.style.background = "white";
 }
 
 function validarAltaPieza(){
