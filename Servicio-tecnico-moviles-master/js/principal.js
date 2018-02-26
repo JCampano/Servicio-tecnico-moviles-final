@@ -230,8 +230,9 @@ function mostrarAltaPieza(){
             });
 
     } else {// si se cargo abrimos el dialogo  
-		reiniciarValidacionesAltaPieza();	
-		vaciarComboNumSerie();
+		reiniciarValidacionesAltaPieza();
+		cargarComboIdReparacion();
+		vaciarComboIdReparacion();
 		$('#divfrmaltapieza').dialog("open");		
     }
 }

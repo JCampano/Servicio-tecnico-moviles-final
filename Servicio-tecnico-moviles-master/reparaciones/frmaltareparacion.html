@@ -4,6 +4,21 @@
 
             <!-- Form Name -->
             <legend>Registro nueva reparacion</legend>
+			
+			 <!-- Text input-->
+            <div class="form-group">
+                <label class="col-xs-4 control-label" for="idReparacion">Averia</label>
+                <div class="col-xs-4">
+                    <input id="idReparacion" name="idReparacion" placeholder="ID" class="form-control input-md" required="" type="text">
+                </div>
+			</div>
+			
+			<div class="form-group">
+                <label class="col-xs-4 control-label" for="solicitante">Solicitante</label>
+                <select class="form-control col-xs-4 input-md" id="solicitanteAlta" name="solicitanteAlta">
+				</select>
+            </div>
+			
             <div class="form-group">
                 <label class="col-xs-4 control-label" for="repararDispositivo">Dispositivo</label>
                 <select class="form-control col-xs-4 input-md" id="repararDispositivoAlta" name="repararDispositivoAlta">
@@ -25,12 +40,7 @@
                 </div>
 			</div>
 				
-            <div class="form-group">
-                <label class="col-xs-4 control-label" for="importeReparacion">Importe presupuestado</label>
-                <div class="col-xs-4">
-                    <input id="importeReparacion" name="importeReparacion" placeholder="Importe" class="form-control input-md" required="" type="text">
-                </div>
-			</div>
+            
 					
             <div class="form-group">
                 <label for="col-xs-4 control-label comment">Comentarios</label>

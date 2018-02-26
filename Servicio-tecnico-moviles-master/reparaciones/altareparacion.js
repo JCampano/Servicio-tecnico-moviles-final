@@ -26,6 +26,7 @@ $("#divfrmaltareparacion").dialog({
 });
 
 cargarComboAltaReparaciones();
+cargarComboAltaSolicitante();
 
 
 document.getElementById("altaReparacion").addEventListener("click",validarAltaReparacion,false);
@@ -39,34 +40,56 @@ function reiniciarValidacionesAltaReparacion(){
 	document.frmAltaReparacion.reset();
 	document.frmAltaReparacion.averiaReparacion.style.background = "white";	
 	document.frmAltaReparacion.estadoReparacion.style.background = "white";	
-	document.frmAltaReparacion.importeReparacion.style.background = "white";
 	document.frmAltaReparacion.comentarioReparacion.style.background = "white";	
 	document.frmAltaReparacion.repararDispositivoAlta.style.background = "white";
+	document.frmAltaReparacion.solicitanteAlta.style.background = "white";
+	document.frmAltaReparacion.idReparacion.style.background = "white";
 }
 
 function validarAltaReparacion(){
-	var averia = document.frmAltaReparacion.averiaReparacion.value.trim();
-	var estado = document.frmAltaReparacion.estadoReparacion.value.trim();
-	var importe = document.frmAltaReparacion.importeReparacion.value.trim();
+	var idReparacion = document.frmAltaReparacion.idReparacion.value.trim();
+	var solicitante = document.frmAltaReparacion.solicitanteAlta.value.trim();
+	var dispositivo = document.frmAltaReparacion.repararDispositivoAlta.value.trim();
+	var averia = document.frmAltaReparacion.averiaReparacion.value.trim();	
+	var estado = document.frmAltaReparacion.estadoReparacion.value.trim();	
 	var comentarios = document.frmAltaReparacion.comentarioReparacion.value.trim();
 	
 	var errores = false;
 	
 	var expRegAveria = /^[a-zA-Z\s]{3,10}$/;
 	var expRegEstado = /^[a-zA-Z\s]{3,10}$/;
-	var expRegImporte = /^\d*[.]?\d{1,3}[€]$/;
+	var expRegidReparacion = /^\[0-9]{4}/;
 	var expRegComentarios =  /^.{3,500}$/;
 	
 	
 	//validaciones
 	var sErrores = "";
 	
-	if(document.frmAltaReparacion.repararDispositivoAlta.value =="Lista de dispositivos"){
+	//Marca
+	if (expRegidReparacion.test(idReparacion) == false){	
+		errores = true;				
+		document.frmAltaReparacion.idReparacion.focus(); //Este campo obtiene el foco		
+		sErrores += "El campo ID reparacion debe contener entre 4 numeros\n";				
+		document.frmAltaReparacion.idReparacion.style.background = "yellow"; //Marcar error
+	}
+	else { //Desmarcar error
+		document.frmAltaReparacion.idReparacion.style.background = "white";	
+	}
+	
+	if(document.frmAltaReparacion.repararDispositivoAlta.value ==""){
 		sErrores += "Debe seleccionar 1 dispositivo\n";
 		document.frmAltaReparacion.repararDispositivoAlta.style.background = "yellow";
 	}
 	else{
 		document.frmAltaReparacion.repararDispositivoAlta.style.background = "white";
+	}
+	
+	if(document.frmAltaReparacion.solicitanteAlta.value ==""){
+		sErrores += "Debe seleccionar 1 solicitante\n";
+		document.frmAltaReparacion.solicitanteAlta.style.background = "yellow";
+	}
+	else{
+		document.frmAltaReparacion.solicitanteAlta.style.background = "white";
 	}
 	
 	//Marca
@@ -89,18 +112,7 @@ function validarAltaReparacion(){
 	}
 	else { //Desmarcar error
 		document.frmAltaReparacion.estadoReparacion.style.background = "white";	
-	}
-	
-	//Importe
-	if (expRegImporte.test(importe) == false){	
-		errores = true;				
-		document.frmAltaReparacion.importeReparacion.focus(); //Este campo obtiene el foco		
-		sErrores += 'El campo Importe debe contener numeros y acabar con el caracter €\n';				
-		document.frmAltaReparacion.importeReparacion.style.background = "yellow"; //Marcar error
-	}
-	else { //Desmarcar error
-		document.frmAltaReparacion.importeReparacion.style.background = "white";	
-	}
+	}	
 	
 	//Comentarios
 	if (expRegComentarios.test(comentarios) == false){	
@@ -133,4 +145,16 @@ $('#repararDispositivoAlta').each(function(){
       });
 }
 
+
+function cargarComboAltaSolicitante(){
+//con load
+$("#solicitanteAlta").load("reparaciones/cargarComboAltaSolicitante.php");
+
+}
+
+function vaciarComboAltaSolicitante(){
+$('#solicitanteAlta').each(function(){
+          $('#solicitanteAlta option').remove();
+      });
+}
 

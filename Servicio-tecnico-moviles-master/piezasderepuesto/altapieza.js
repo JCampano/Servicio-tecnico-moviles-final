@@ -1,4 +1,4 @@
-//# sourceURL=altaCasa/altaCasa.js
+//# sourceURL=altaPieza/altaPieza.js
 // Creacion del dialogo
 $("#divfrmaltapieza").dialog({
     autoOpen: true,  // Es el valor por defecto
@@ -28,6 +28,7 @@ $("#divfrmaltapieza").dialog({
 
 document.getElementById("altaPieza").addEventListener("click",validarAltaPieza,false);
 document.frmAltaPieza.volver.addEventListener("click",volverAltaPieza,false);
+cargarComboIdReparacion();
 
 function volverAltaPieza(){
 	$("#divfrmaltapieza").dialog("close");    	
@@ -40,7 +41,7 @@ function reiniciarValidacionesAltaPieza(){
 	document.frmAltaPieza.numSerie.style.background = "white";
 	document.frmAltaPieza.tipoPieza.style.background = "white";
 	document.frmAltaPieza.precioPieza.style.background = "white";
-    document.frmAltaPieza.idReparacion.style.background = "white";
+    document.frmAltaPieza.idReparacionAltaPieza.style.background = "white";
     document.frmAltaPieza.cifProveedor.style.background = "white";
 }
 
@@ -48,7 +49,7 @@ function validarAltaPieza(){
 	var numSerie = document.frmAltaPieza.numSerie.value.trim();
 	var tipo = document.frmAltaPieza.tipoPieza.value.trim();
 	var precio = document.frmAltaPieza.precioPieza.value.trim();
-    var idReparacion = document.frmAltaPieza.idReparacion.value.trim();
+    var idReparacion = document.frmAltaPieza.idReparacionAltaPieza.value.trim();
     var cifProveedor = document.frmAltaPieza.cifProveedor.value.trim();
 	
 	var errores = false;
@@ -180,3 +181,9 @@ function objetoXHR() {
         throw new Error("No se pudo crear el objeto XMLHttpRequest");
 }
 
+function cargarComboIdReparacion(){
+//con load
+$("#idReparacionAltaPieza").load("piezasderepuesto/comboIdReparacion.php");
+
+}
+function vaciarComboIdReparacion(){}
