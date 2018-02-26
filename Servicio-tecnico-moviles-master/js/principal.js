@@ -10,7 +10,7 @@ function ocultarMenu(){
 
 function mostrarMenu(){
 	document.getElementById("menuDesplegable").style.visibility = "visible";
-	
+
 }
 
 document.getElementById("navAltaCliente").addEventListener("click", mostrarAltaCliente, false);
@@ -62,8 +62,8 @@ function mostrarBajaCliente(){
                 $.getScript("clientes/bajacliente.js");
             });
 
-    } else {// si se cargo abrimos el dialogo  
-		reiniciarValidacionesBajaCliente();	
+    } else {// si se cargo abrimos el dialogo
+		reiniciarValidacionesBajaCliente();
 		$('#divfrmbajacliente').dialog("open");
     }
 }
@@ -77,7 +77,7 @@ function mostrarModificarCliente(){
                 $.getScript("clientes/modificarcliente.js");
             });
 
-    } else {// si se cargo abrimos el dialogo    
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesModificarCliente();
 		$('#divfrmmodificarcliente').dialog("open");
     }
@@ -92,7 +92,7 @@ function mostrarAltaEmpleado(){
                 $.getScript("personal/altaempleado.js");
             });
 
-    } else {// si se cargo abrimos el dialogo   
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesAltaEmpleado();
 		$('#divfrmaltaempleado').dialog("open");
     }
@@ -107,7 +107,7 @@ function mostrarBajaEmpleado(){
                 $.getScript("personal/bajaempleado.js");
             });
 
-    } else {// si se cargo abrimos el dialogo        
+    } else {// si se cargo abrimos el dialogo
 		$('#divfrmbajaempleado').dialog("open");
 		reiniciarValidacionesBajaEmpleado();
     }
@@ -122,7 +122,7 @@ function mostrarModificarEmpleado(){
                 $.getScript("personal/modificarempleado.js");
             });
 
-    } else {// si se cargo abrimos el dialogo        
+    } else {// si se cargo abrimos el dialogo
 		$('#divfrmmodificarempleado').dialog("open");
 		reiniciarValidacionesModificarEmpleado();
     }
@@ -137,7 +137,7 @@ function mostrarAltaProveedor(){
                 $.getScript("proveedores/altaproveedor.js");
             });
 
-    } else {// si se cargo abrimos el dialogo        
+    } else {// si se cargo abrimos el dialogo
 		$('#divfrmaltaproveedor').dialog("open");
 		reiniciarValidacionesAltaProveedor();
     }
@@ -152,7 +152,7 @@ function mostrarBajaProveedor(){
                 $.getScript("proveedores/bajaproveedor.js");
             });
 
-    } else {// si se cargo abrimos el dialogo      
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesBajaProveedor();
 		$('#divfrmbajaproveedor').dialog("open");
     }
@@ -167,7 +167,7 @@ function mostrarModificarProveedor(){
                 $.getScript("proveedores/modificarproveedor.js");
             });
 
-    } else {// si se cargo abrimos el dialogo 
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesModificarProveedor();
 		$('#divfrmmodificarproveedor').dialog("open");
     }
@@ -183,7 +183,7 @@ function mostrarAltaDispositivo(){
                 $.getScript("dispositivos/altadispositivo.js");
             });
 
-    } else {// si se cargo abrimos el dialogo    
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesAltaDispositivo();
 		$('#divfrmaltadispositivo').dialog("open");
     }
@@ -198,7 +198,7 @@ function mostrarBajaDispositivo(){
                 $.getScript("dispositivos/bajadispositivo.js");
             });
 
-    } else {// si se cargo abrimos el dialogo 
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesBajaDispositivo();
 		$('#divfrmbajadispositivo').dialog("open");
     }
@@ -213,7 +213,7 @@ function mostrarModificarDispositivo(){
                 $.getScript("dispositivos/modificardispositivo.js");
             });
 
-    } else {// si se cargo abrimos el dialogo 
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesModificarDispositivo();
 		$('#divfrmmodificardispositivo').dialog("open");
     }
@@ -229,14 +229,14 @@ function mostrarAltaPieza(){
                 $.getScript("piezasderepuesto/altapieza.js");
             });
 
-    } else {// si se cargo abrimos el dialogo  
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesAltaPieza();
 		vaciarComboIdReparacion();
 		cargarComboIdReparacion();
-		vaciarComboCifProveedor();		
+		vaciarComboCifProveedor();
 		cargarComboCifProveedor();
-		
-		$('#divfrmaltapieza').dialog("open");		
+
+		$('#divfrmaltapieza').dialog("open");
     }
 }
 
@@ -249,7 +249,7 @@ function mostrarBajaPieza(){
                 $.getScript("piezasderepuesto/bajapieza.js");
             });
 
-    } else {// si se cargo abrimos el dialogo   
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesBajaPieza();
 		$('#divfrmbajapieza').dialog("open");
     }
@@ -264,7 +264,7 @@ function mostrarModificarPieza(){
                 $.getScript("piezasderepuesto/modificarpieza.js");
             });
 
-    } else {// si se cargo abrimos el dialogo 
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesModificarPieza();
 		$('#divfrmmodificarpieza').dialog("open");
     }
@@ -280,7 +280,7 @@ function mostrarAltaReparacion(){
                 $.getScript("reparaciones/altareparacion.js");
             });
 
-    } else {// si se cargo abrimos el dialogo   
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesAltaReparacion();
 		vaciarComboAltaReparaciones();
 		vaciarComboAltaSolicitante();
@@ -299,10 +299,9 @@ function mostrarBajaReparacion(){
                 $.getScript("reparaciones/bajareparacion.js");
             });
 
-    } else {// si se cargo abrimos el dialogo      
+    } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesBajaReparacion();
 		vaciarComboBajaReparaciones();
-		cargarComboBajaReparaciones();
 		$('#divfrmbajareparacion').dialog("open");
     }
 }
@@ -319,7 +318,6 @@ function mostrarModificarReparacion(){
     } else {// si se cargo abrimos el dialogo
 		reiniciarValidacionesModificarReparacion();
 		vaciarComboModificarReparaciones();
-		cargarComboModificarReparaciones();
 		$('#divfrmmodificarreparacion').dialog("open");
     }
 }
@@ -327,57 +325,70 @@ function mostrarModificarReparacion(){
 document.getElementById("navListadoClientes").addEventListener("click", mostrarListadoClientes, false);
 document.getElementById("navListadoProveedores").addEventListener("click", mostrarListadoProveedores, false);
 document.getElementById("navListadoEmpleados").addEventListener("click", mostrarListadoEmpleados, false);
-/*
 document.getElementById("navListadoDispositivos").addEventListener("click", mostrarListadoDispositivos, false);
-
-
-document.getElementById("navListadoReparaciones").addEventListener("click", mostrarListadoReparacionesFiltro, false);
-document.getElementById("navListadoPiezas").addEventListener("click", mostrarListadoPiezasFiltro, false);
-*/
+document.getElementById("navListadoReparaciones").addEventListener("click", mostrarListadoReparaciones, false);
 
 //LISTADOS
 function ocultarInicio(){
-	document.getElementById("jumbo").style.display = "none";	
+	document.getElementById("jumbo").style.display = "none";
 }
-	
+
 //document.getElementById("volverListadoCliente").addEventListener("click",volverListado,false);
 function volverListado(){
 	$("#listados").html("");
-	document.getElementById("jumbo").style.display = "block";		
+	document.getElementById("jumbo").style.display = "block";
 }
 
 var oAjaxListado = null;
 var tipoListado = null;
 
-function mostrarListadoClientes(){	
+function mostrarListadoClientes(){
 	ocultarInicio();
 	$("#listados").html("");
 	tipoListado="clientes";
-	llamadaAjaxListado("clientes/listadoClientes.php");	
+	llamadaAjaxListado("clientes/listadoClientes.php");
 }
 
-function mostrarListadoProveedores(){	
+function mostrarListadoProveedores(){
 	ocultarInicio();
 	$("#listados").html("");
 	tipoListado="proveedores";
-	llamadaAjaxListado("proveedores/listadoProveedores.php");	
+	llamadaAjaxListado("proveedores/listadoProveedores.php");
 }
 
-function mostrarListadoEmpleados(){	
+function mostrarListadoEmpleados(){
 	ocultarInicio();
 	$("#listados").html("");
 	tipoListado="empleados";
-	//llamadaAjaxListado("personal/listadoEmpleados.php");	
-	$.get(llamadaAjaxListado("personal/listadoEmpleados.php"));
-	}
-
-/*
-function mostrarListadoDispositivos(){	
-	ocultarInicio();
-	tipoListado="dispositivos";
-	llamadaAjaxListado("clientes/listadoDispositivos.php");	
+	llamadaAjaxListado("personal/listadoEmpleados.php");
 }
-*/
+
+
+function mostrarListadoDispositivos(){
+    ocultarMenu();
+	// Verifico si ya he cargado el formulario antes
+    if ($('#frmListadoDispositivos').size() == 0) {// si la longitud es 0 no se cargo
+        $('<div id="divfrmlistadodispositivos"></div>').appendTo('#formularios').load("dispositivos/frmlistardispositivos.html",
+            function() {
+                $.getScript("dispositivos/listadodispositivos.js");
+            });
+
+    } else {// si se cargo abrimos el dialogo
+		reiniciarValidacionesListadoDispositivos();
+		vaciarComboListadoDispositivos();
+		$('#divfrmlistadodispositivos').dialog("open");
+    }
+}
+
+function mostrarListadoReparaciones(){
+    /*
+	ocultarInicio();
+    $("#listados").html("");
+	tipoListado="reparaciones";
+	llamadaAjaxListado("reparaciones/listadoReparaciones.php");
+    */
+}
+
 function objetoXHR() {
 			if (window.XMLHttpRequest) {
 				return new XMLHttpRequest();
@@ -397,7 +408,7 @@ function llamadaAjaxListado(sURL){
 	oAjaxListado = objetoXHR();
 
 	oAjaxListado.open("GET",sURL,true);
-			
+
 	oAjaxListado.onreadystatechange = respuestaListado;
 
 	oAjaxListado.send(null);
@@ -420,10 +431,10 @@ function respuestaListado(){
 
 			case 'empleados':
 			procesaListadoEmpleadosXML(oXML);
-			break;			
-	
+			break;
+
 			//CON FILTROS
-	
+
 			case 'dispositivos':
 			procesaListadoDispositivosXML(oXML);
 			break;
@@ -435,16 +446,16 @@ function respuestaListado(){
 			case 'FGFGGFFGSG':
 			(oXML);
 			break;
-		}					
+		}
 	}
 }
 
-function procesaListadoClientesXML(oXML){		
+function procesaListadoClientesXML(oXML){
 	var jqTabla = $('<table class="table" id="listado">');
-	
+
 	var oCliente = oXML.getElementsByTagName("cliente");
 	$('<tr><th>DNI</th><th>NOMBRE</th><th>APELLIDOS</th><th>TELEFONO</th><th>DIRECCION</th>').appendTo(jqTabla);
-	
+
 	for(var i=0;i<oCliente.length;i++){
 		$('<tr>' +
 			'<td>'+oCliente[i].getElementsByTagName('idcliente')[0].textContent+'</td>' +
@@ -453,19 +464,19 @@ function procesaListadoClientesXML(oXML){
 			'<td>'+oCliente[i].getElementsByTagName('movil')[0].textContent+'</td>' +
 			'<td>'+oCliente[i].getElementsByTagName('direccion')[0].textContent+'</td>' +
 		 '</tr>').appendTo(jqTabla);
-	 }	
+	 }
 	 jqTabla.appendTo("#listados");
 	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
-	 
+
 }
 
 
 function procesaListadoEmpleadosXML(oXML){
 	var jqTabla = $('<table class="table" id="listado">');
-		
+
 	var oEmpleado = oXML.getElementsByTagName("empleado");
 	$('<tr><th>ID</th><th>NOMBRE</th><th>APELLIDOS</th><th>TELEFONO</th><th>DIRECCION</th>').appendTo(jqTabla);
-	
+
 	for(var i=0;i<oEmpleado.length;i++){
 		$('<tr>' +
 			'<td>'+oEmpleado[i].getElementsByTagName('id')[0].textContent+'</td>' +
@@ -474,19 +485,19 @@ function procesaListadoEmpleadosXML(oXML){
 			'<td>'+oEmpleado[i].getElementsByTagName('movil')[0].textContent+'</td>' +
 			'<td>'+oEmpleado[i].getElementsByTagName('direccion')[0].textContent+'</td>' +
 		 '</tr>').appendTo(jqTabla);
-	 }	
+	 }
 	 jqTabla.appendTo("#listados");
 	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
-	 
+
 }
 
 
 function procesaListadoProveedoresXML(oXML){
-	var jqTabla = $('<table class="table" id="listado">');	
-	
+	var jqTabla = $('<table class="table" id="listado">');
+
 	var oProveedor = oXML.getElementsByTagName("proveedor");
 	$('<tr><th>ID</th><th>NOMBRE</th><th>APELLIDOS</th><th>TELEFONO</th><th>DIRECCION</th>').appendTo(jqTabla);
-	
+
 	for(var i=0;i<oProveedor.length;i++){
 		$('<tr>' +
 			'<td>'+oProveedor[i].getElementsByTagName('id')[0].textContent+'</td>' +
@@ -495,10 +506,10 @@ function procesaListadoProveedoresXML(oXML){
 			'<td>'+oProveedor[i].getElementsByTagName('movil')[0].textContent+'</td>' +
 			'<td>'+oProveedor[i].getElementsByTagName('direccion')[0].textContent+'</td>' +
 		 '</tr>').appendTo(jqTabla);
-	 }	
+	 }
 	 jqTabla.appendTo("#listados");
 	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
-	 
+
 }
 
 //eventos botones aceptar
@@ -506,30 +517,21 @@ function procesaListadoProveedoresXML(oXML){
 document.getElementById("altaCliente").addEventListener("click", validarAltaCliente, false);
 document.getElementById("bajaCliente").addEventListener("click", validarBajaCliente, false);
 document.getElementById("modificarCliente").addEventListener("click", validarModificarCliente, false);
-
 document.getElementById("altaDispositivo").addEventListener("click", validarAltaDispositivo, false);
 document.getElementById("bajaDispositivo").addEventListener("click", validarBajaDispositivo, false);
 document.getElementById("modificarDispositivo").addEventListener("click", validarModificarDispositivo, false);
-
 document.getElementById("altaReparacion").addEventListener("click", validarAltaReparacion, false);
 document.getElementById("bajaReparacion").addEventListener("click", validarBajaReparacion, false);
 document.getElementById("modificarReparacion").addEventListener("click", validarModificarReparacion, false);
-
 document.getElementById("altaEmpleado").addEventListener("click", validarAltaEmpleado, false);
 document.getElementById("bajaEmpleado").addEventListener("click", validarBajaEmpleado, false);
 document.getElementById("modificarEmpleado").addEventListener("click", validarModificarEmpleado, false);
-
 document.getElementById("altaPieza").addEventListener("click", validarAltaPieza, false);
 document.getElementById("bajaPieza").addEventListener("click", validarBajaPieza, false);
 document.getElementById("modificarPieza").addEventListener("click", validarModificarPieza, false);
-
 document.getElementById("altaProveedor").addEventListener("click", validarAltaProveedor, false);
 document.getElementById("bajaProveedor").addEventListener("click", validarBajaProveedor, false);
 document.getElementById("modificarProveedor").addEventListener("click", validarModificarProveedor, false);
-
-
-
-
 //LISTADOS
 function mostrarListadoClientes()
 {
@@ -555,22 +557,16 @@ function mostrarListadoClientes()
 	document.getElementById('frmBajaProveedor').style.display = "none";
 	document.getElementById('frmModificarProveedor').style.display = "none";
 	document.getElementById('frmAltaProveedor').style.display = "none";
-
 	var oCapa = document.getElementById("listados");
-
-	if (oCapa.firstChild) 
+	if (oCapa.firstChild)
 		oCapa.removeChild(oCapa.lastChild);
-	
 
 	var nombre = prompt("¿Busca un nombre?", "Escriba el nombre o en blanco para listado normal");
 	nombre = nombre.trim();
 	var listado = oSAT.pintarListadoClientes(nombre);
-
-
 	oCapa.appendChild(listado);
- 
-}
 
+}
 function mostrarListadoDispositivos()
 {
 	document.getElementById('listados').style.display = "block";
@@ -595,19 +591,16 @@ function mostrarListadoDispositivos()
 	document.getElementById('frmBajaProveedor').style.display = "none";
 	document.getElementById('frmModificarProveedor').style.display = "none";
 	document.getElementById('frmAltaProveedor').style.display = "none";
-
 	var oCapa = document.getElementById("listados");
-
-	if (oCapa.firstChild) 
+	if (oCapa.firstChild)
 		oCapa.removeChild(oCapa.lastChild);
-	
+
 	var garantia = prompt("¿Tiene garantia?", "Escriba S o N,introduzca cualquier otro caracter para un listado normal");
 	garantia = garantia.trim();
 	var listado = oSAT.pintarListadoDispositivos(garantia);
 	oCapa.appendChild(listado);
- 
-}
 
+}
 function mostrarListadoProveedores()
 {
 	document.getElementById('listados').style.display = "block";
@@ -632,20 +625,13 @@ function mostrarListadoProveedores()
 	document.getElementById('frmBajaProveedor').style.display = "none";
 	document.getElementById('frmModificarProveedor').style.display = "none";
 	document.getElementById('frmAltaProveedor').style.display = "none";
-
 	var oCapa = document.getElementById("listados");
-
-	if (oCapa.firstChild) 
+	if (oCapa.firstChild)
 		oCapa.removeChild(oCapa.lastChild);
-
 	var listado = oSAT.pintarListadoProveedores();
-
-
 	oCapa.appendChild(listado);
- 
+
 }
-
-
 function mostrarListadoEmpleados()
 {
 	document.getElementById('listados').style.display = "block";
@@ -670,19 +656,13 @@ function mostrarListadoEmpleados()
 	document.getElementById('frmBajaProveedor').style.display = "none";
 	document.getElementById('frmModificarProveedor').style.display = "none";
 	document.getElementById('frmAltaProveedor').style.display = "none";
-
 	var oCapa = document.getElementById("listados");
-
-	if (oCapa.firstChild) 
+	if (oCapa.firstChild)
 		oCapa.removeChild(oCapa.lastChild);
-
 	var listado = oSAT.pintarListadoEmpleados();
-
-
 	oCapa.appendChild(listado);
- 
-}
 
+}
 function mostrarListadoReparaciones()
 {
 	document.getElementById('listados').style.display = "block";
@@ -707,60 +687,42 @@ function mostrarListadoReparaciones()
 	document.getElementById('frmBajaProveedor').style.display = "none";
 	document.getElementById('frmModificarProveedor').style.display = "none";
 	document.getElementById('frmAltaProveedor').style.display = "none";
-
 	var oCapa = document.getElementById("listados");
-
-	if (oCapa.firstChild) 
+	if (oCapa.firstChild)
 		oCapa.removeChild(oCapa.lastChild);
-
 	var listado = oSAT.pintarListadoReparaciones();
-
-
 	oCapa.appendChild(listado);
- 
+
 }
-
-
 /*
 // eventos botones volver
 document.frmAltaCliente.volver.addEventListener("click", volverAltaCliente, false);
 document.frmBajaCliente.volver.addEventListener("click", volverBajaCliente, false);
 document.frmModificarCliente.volver.addEventListener("click", volverModificarCliente, false);
-
-
 document.frmAltaDispositivo.volver.addEventListener("click", volverAltaDispositivo, false);
 document.frmBajaDispositivo.volver.addEventListener("click", volverBajaDispositivo, false);
 document.frmModificarDispositivo.volver.addEventListener("click", volverModificarDispositivo, false);
-
-
 document.frmAltaReparacion.volver.addEventListener("click", volverAltaReparacion, false);
 document.frmBajaReparacion.volver.addEventListener("click", volverBajaReparacion, false);
 document.frmModificarReparacion.volver.addEventListener("click", volverModificarReparacion, false);
-
 document.frmAltaProveedor.volver.addEventListener("click", volverAltaProveedor, false);
 document.frmBajaProveedor.volver.addEventListener("click", volverBajaProveedor, false);
 document.frmModificarProveedor.volver.addEventListener("click", volverModificarProveedor, false);
-
 document.frmAltaPieza.volver.addEventListener("click", volverAltaPieza, false);
 document.frmBajaPieza.volver.addEventListener("click", volverBajaPieza, false);
 document.frmModificarPieza.volver.addEventListener("click", volverModificarPieza, false);
-
-
 document.frmAltaEmpleado.volver.addEventListener("click", volverAltaEmpleado, false);
 document.frmBajaEmpleado.volver.addEventListener("click", volverBajaEmpleado, false);
 document.frmModificarEmpleado.volver.addEventListener("click", volverModificarEmpleado, false);
-
-
 document.frmPago.volver.addEventListener("click", volverPago, false);
 document.frmCobro.volver.addEventListener("click", volverCobro, false);
 */
 /*
 function mostrarInicio(){
 	var oCapa = document.getElementById("listados");
-
-	if (oCapa.firstChild) 
+	if (oCapa.firstChild)
 		oCapa.removeChild(oCapa.lastChild);
-	
+
 	document.frmAltaCliente.style.display = "none";
 	document.frmBajaCliente.style.display = "none";
 	document.frmModificarCliente.style.display = "none";
@@ -781,112 +743,81 @@ function mostrarInicio(){
 	document.frmModificarEmpleado.style.display = "none";
 	document.frmPago.style.display = "none";
 	document.frmCobro.style.display = "none";
-	
+
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverAltaCliente(){
 	document.frmAltaCliente.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverBajaCliente(){
 	document.frmBajaCliente.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverModificarCliente(){
 	document.frmModificarCliente.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
-
-
 function volverAltaProveedor(){
 	document.frmAltaProveedor.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverBajaProveedor(){
 	document.frmBajaProveedor.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverModificarProveedor(){
 	document.frmModificarProveedor.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
-
-
 function volverAltaPieza(){
 	document.frmAltaPieza.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverBajaPieza(){
 	document.frmBajaPieza.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverModificarPieza(){
 	document.frmModificarPieza.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
-
-
 function volverAltaDispositivo(){
 	document.frmAltaDispositivo.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverBajaDispositivo(){
 	document.frmBajaDispositivo.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverModificarDispositivo(){
 	document.frmModificarDispositivo.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
-
-
 function volverAltaReparacion(){
 	document.frmAltaReparacion.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverBajaReparacion(){
 	document.frmBajaReparacion.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverModificarReparacion(){
 	document.frmModificarReparacion.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
-
-
 function volverAltaEmpleado(){
 	document.frmAltaEmpleado.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverBajaEmpleado(){
 	document.frmBajaEmpleado.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 function volverModificarEmpleado(){
 	document.frmModificarEmpleado.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
-
-
 function volverPago(){
 	document.frmPago.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
@@ -895,7 +826,6 @@ function volverCobro(){
 	document.frmCobro.style.display = "none";
 	document.getElementById('jumbo').style.display = "block";
 }
-
 */
 /*
 //carga de datos XML
@@ -910,15 +840,13 @@ function loadXMLDoc(filename)
 	  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	  }
 	xhttp.open("GET",filename,false);
-	
-	xhttp.send();
-	
-	return xhttp.responseXML;
-} 
 
+	xhttp.send();
+
+	return xhttp.responseXML;
+}
 function cargarDatosXML(){
 	var oXml = loadXMLDoc("datos.xml");
-
 	var clienteXml = oXml.getElementsByTagName("Clientes");
     var empleadoXml = oXml.getElementsByTagName("Empleados");
     var proveedorXml = oXml.getElementsByTagName("Proveedor");
@@ -927,7 +855,6 @@ function cargarDatosXML(){
 	var reparacionesXml = oXml.getElementsByTagName("Reparaciones");
 	var pagosXml = oXml.getElementsByTagName("Pagos");
 	var cobrosXml = oXml.getElementsByTagName("Cobros");
-
     var cli = clienteXml[0];
     for(var i = 0; i < cli.getElementsByTagName("cliente").length; i++){
         var nombre = cli.getElementsByTagName("cliente")[i].getElementsByTagName("nombre")[0].textContent;
@@ -935,12 +862,11 @@ function cargarDatosXML(){
 		var nif = cli.getElementsByTagName("cliente")[i].getElementsByTagName("nif")[0].textContent;
 		var telf = cli.getElementsByTagName("cliente")[i].getElementsByTagName("telefono")[0].textContent;
 		var direccion = cli.getElementsByTagName("cliente")[i].getElementsByTagName("direccion")[0].textContent;
-
         var oCliente = new Cliente(nombre,apellidos,nif,telf,direccion);
 		var cliente = oSAT.altaCliente(oCliente);
     }
-	
-	
+
+
 	var emple = empleadoXml[0];
     for(var i = 0; i < emple.getElementsByTagName("empleado").length; i++){
         var nombre = emple.getElementsByTagName("empleado")[i].getElementsByTagName("nombre")[0].textContent;
@@ -950,24 +876,23 @@ function cargarDatosXML(){
 		var direccion = emple.getElementsByTagName("empleado")[i].getElementsByTagName("direccion")[0].textContent;
 		var ivan = emple.getElementsByTagName("empleado")[i].getElementsByTagName("ivan")[0].textContent;
 		var cargo = emple.getElementsByTagName("empleado")[i].getElementsByTagName("cargo")[0].textContent;
-
         var oEmpleado = new Personal(nombre,apellidos,nif,telf,direccion,ivan,cargo);
 		var empleado = oSAT.altaEmpleado(oEmpleado);
     }
-	
-	
+
+
 	var prove = proveedorXml[0];
     for(var i = 0; i < prove.getElementsByTagName("proveedor").length; i++){
         var nombre = prove.getElementsByTagName("proveedor")[i].getElementsByTagName("nombre")[0].textContent;
         var tipo = prove.getElementsByTagName("proveedor")[i].getElementsByTagName("tipo")[0].textContent;
 		var cif = prove.getElementsByTagName("proveedor")[i].getElementsByTagName("cif")[0].textContent;
-		
+
         var oProveedor = new Proveedor(tipo,nombre,cif);
 		var proveedor = oSAT.altaProveedor(oProveedor);
     }
-	
-	
-	
+
+
+
 	var disp = dispositivoXml[0];
     for(var i = 0; i < disp.getElementsByTagName("dispositivo").length; i++){
         var marca = disp.getElementsByTagName("dispositivo")[i].getElementsByTagName("marca")[0].textContent;
@@ -975,13 +900,12 @@ function cargarDatosXML(){
 		var garantia = disp.getElementsByTagName("dispositivo")[i].getElementsByTagName("garantia")[0].textContent;
 		var entrada = disp.getElementsByTagName("dispositivo")[i].getElementsByTagName("entrada")[0].textContent;
 		var salida = disp.getElementsByTagName("dispositivo")[i].getElementsByTagName("salida")[0].textContent;
-		
+
         oDispositivos = new Dispositivo(marca,modelo,garantia, new Date(entrada), new Date(salida));
         dispositivo = oSAT.altaDispositivos(oDispositivos);
     }
-	
 
-	
+
 	var repara = reparacionesXml[0];
 	for(var i = 0; i < repara.getElementsByTagName("reparacion").length; i++){
 		var modelo = repara.getElementsByTagName("reparacion")[i].getElementsByTagName("modelo")[0].textContent;
@@ -989,11 +913,10 @@ function cargarDatosXML(){
 		var estado = repara.getElementsByTagName("reparacion")[i].getElementsByTagName("estado")[0].textContent;
 		var importePresupuestado = repara.getElementsByTagName("reparacion")[i].getElementsByTagName("importePresupuestado")[0].textContent;
 		var comentario = repara.getElementsByTagName("reparacion")[i].getElementsByTagName("comentario")[0].textContent;
-			
+
 		oReparaciones = new Reparacion(modelo,averia,estado,importePresupuestado, comentario);
 		reparaciones = oSAT.altaReparacion(oReparaciones);
 	}
-	
+
 }
 */
-
