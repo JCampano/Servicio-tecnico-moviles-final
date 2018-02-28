@@ -4,6 +4,7 @@ $("#divfrmlistadodispositivos").dialog({
     close: function () {
         $("#frmListadoDispositivos")[0].reset();
 		mostrarMenu();
+		volverListado();
     },
     closeOnEscape: false, // No se cierra con ESCAPE
     hide: {
@@ -25,10 +26,11 @@ $("#divfrmlistadodispositivos").dialog({
 });
 
 document.getElementById("listadoDispositivos").addEventListener("click",comprobarListadoDispositivos,false);
-document.frmAltaCliente.volver.addEventListener("click",volverListadoDispositivos,false);
+document.frmListadoDispositivos.volver.addEventListener("click",volverListadoDispositivos,false);
 
 function volverListadoDispositivos(){
 	$("#divfrmlistadodispositivos").dialog("close");
+	volverListado();
 }
 
 function reiniciarValidacionesListadoDispositivos(){
@@ -37,20 +39,10 @@ function reiniciarValidacionesListadoDispositivos(){
 }
 
 function comprobarListadoDispositivos(){
-        /*
-	ocultarInicio();
-    $("#listados").html("");
-	tipoListado="dispositivos";
-	llamadaAjaxListado("dispositivos/listadoDispositivos.php");
-    */
-    var sDatos = $("#frmListadoDispositivos").serialize();
-    $.post("dispositivos/listadodispositivos.php", sDatos, respuestaListadoDispositivos, 'json');
-
-function respuestaListadoDispositivos(oDatosDevueltos, sStatus, oAjax) {
-
-
-            $("#divfrmlistadodispositivos").dialog("close");
-            alert("hola");
-
-    }
-}
+    //guardo el parametro del filtro    
+	var sDatos = document.frmListadoDispositivos.garantiaDispositivo.value;
+alert(sDatos);	
+	
+	llamadaAjaxListadoParametros("dispositivos/listadoDispositivos.php",sDatos);
+	// $.post("clientes/altacliente.php", sDatos, respuestaAltaCliente, 'json');
+}    
