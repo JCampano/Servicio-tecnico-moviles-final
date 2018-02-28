@@ -40,17 +40,17 @@ function reiniciarValidacionesListadoDispositivos(){
 function comprobarListadoDispositivos(){
     //guardo el parametro del filtro    
 	var sDatos = document.frmListadoDispositivos.garantiaDispositivo.value;
-	
+
 	
 	//llamadaAjaxListadoParametros("dispositivos/listadoDispositivos.php",sDatos);
 	// $.post("clientes/altacliente.php", sDatos, respuestaAltaCliente, 'json');
 	
 
-	if(sDatos == "S"){
+	if(sDatos == "S" || sDatos == "s"){
 		$("#listados").load("dispositivos/listadoDispositivos0.php");
 	}
 	else{
-		if(sDatos == "N"){
+		if(sDatos == "N" || sDatos == "n"){
 			$("#listados").load("dispositivos/listadoDispositivos1.php");
 		}
 		else{
@@ -61,4 +61,3 @@ function comprobarListadoDispositivos(){
 }
 	
 	
-  

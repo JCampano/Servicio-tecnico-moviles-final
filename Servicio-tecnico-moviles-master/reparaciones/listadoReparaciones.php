@@ -20,7 +20,14 @@ if($conexion->connect_error){
     }
 $conexion ->set_charset("utf8");//asi es el caracter utf8 si es msqli
 
-$sql = "SELECT * FROM reparacion WHERE importe <= '$precio';";
+if (is_numeric($precio))
+    {
+    $sql = "SELECT * FROM reparacion WHERE importe <= '$precio';";
+    }
+else
+    {
+    $sql = "SELECT * FROM reparacion;";
+    }
 
 $res = $conexion->query($sql);
 
