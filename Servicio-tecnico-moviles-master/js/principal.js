@@ -334,9 +334,9 @@ function ocultarInicio(){
 }
 
 //document.getElementById("volverListadoCliente").addEventListener("click",volverListado,false);
-function volverListado(){
-	$("#listados").html("");
+function volverListado(){	
 	document.getElementById("jumbo").style.display = "block";
+	$("#listados").html("");
 }
 
 var oAjaxListado = null;
@@ -382,12 +382,20 @@ function mostrarListadoDispositivos(){
 }
 
 function mostrarListadoReparaciones(){
-    /*
-	ocultarInicio();
-    $("#listados").html("");
-	tipoListado="reparaciones";
-	llamadaAjaxListado("reparaciones/listadoReparaciones.php");
-    */
+    ocultarInicio();
+	$("#listados").html("");
+	tipoListado="reparaciones";	
+	// Verifico si ya he cargado el formulario antes
+    if ($('#frmListadoReparaciones').size() == 0) {// si la longitud es 0 no se cargo
+        $('<div id="divfrmlistadoreparaciones"></div>').appendTo('#formularios').load("reparaciones/frmlistarreparaciones.html",
+            function() {
+                $.getScript("reparaciones/listarreparaciones.js");
+            });
+
+    } else {// si se cargo abrimos el dialogo
+		reiniciarValidacionesListadoReparaciones();		
+		$('#divfrmlistadoreparaciones').dialog("open");
+    }
 }
 
 function objetoXHR() {
@@ -445,7 +453,7 @@ function respuestaListado(){
 			procesaListadoEmpleadosXML(oXML);
 			break;
 
-			//CON FILTROS
+			/*CON FILTROS
 
 			case 'dispositivos':
 			procesaListadoDispositivosXML(oXML);
@@ -457,7 +465,7 @@ function respuestaListado(){
 
 			case 'FGFGGFFGSG':
 			(oXML);
-			break;
+			break;*/
 		}
 	}
 }
@@ -525,8 +533,8 @@ function procesaListadoProveedoresXML(oXML){
 }
 
 
-function procesaListadoDispositivosXML(oXML){
-	/*var jqTabla = $('<table class="table" id="listado">');
+/*function procesaListadoDispositivosXML(oXML){
+	var jqTabla = $('<table class="table" id="listado">');
 
 	var oDispositivo = oXML.getElementsByTagName("dispositivo");
 	$('<tr><th>ID</th><th>MARCA</th><th>MODELO</th><th>GARANTIA</th><th>FECHA ENTRADA</th>th>FECHA SALIDA</th>').appendTo(jqTabla);
@@ -543,5 +551,5 @@ function procesaListadoDispositivosXML(oXML){
 	 }
 	 jqTabla.appendTo("#listados");
 	  $('<input type="button" name="volver" class="btn bg-success btn-primary" value="Volver" onclick ="volverListado();" />').appendTo("#listados");
-*/
-}
+
+}*/

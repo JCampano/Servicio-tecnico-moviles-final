@@ -3,8 +3,7 @@ $("#divfrmlistadodispositivos").dialog({
     // beforeClose: antesDeCerrarse,
     close: function () {
         $("#frmListadoDispositivos")[0].reset();
-		mostrarMenu();
-		volverListado();
+		
     },
     closeOnEscape: false, // No se cierra con ESCAPE
     hide: {
@@ -41,8 +40,25 @@ function reiniciarValidacionesListadoDispositivos(){
 function comprobarListadoDispositivos(){
     //guardo el parametro del filtro    
 	var sDatos = document.frmListadoDispositivos.garantiaDispositivo.value;
-alert(sDatos);	
 	
-	llamadaAjaxListadoParametros("dispositivos/listadoDispositivos.php",sDatos);
+	
+	//llamadaAjaxListadoParametros("dispositivos/listadoDispositivos.php",sDatos);
 	// $.post("clientes/altacliente.php", sDatos, respuestaAltaCliente, 'json');
-}    
+	
+
+	if(sDatos == "S"){
+		$("#listados").load("dispositivos/listadoDispositivos0.php");
+	}
+	else{
+		if(sDatos == "N"){
+			$("#listados").load("dispositivos/listadoDispositivos1.php");
+		}
+		else{
+			$("#listados").load("dispositivos/listadoDispositivos2.php");
+		}
+	}
+	$("#divfrmlistadodispositivos").dialog("close");
+}
+	
+	
+  
